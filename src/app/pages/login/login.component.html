@@ -1,0 +1,32 @@
+<div class="black" style="margin-top: 150px;">
+    <div class="contenido">
+        <h2>Inicia Sesión</h2>
+    </div>
+    <div style="margin-top: 10px;">
+        <form [formGroup]="form">
+            <mat-form-field class="">
+                <input type="text" maxlength="50" type="text" formControlName="txtusuario" matInput placeholder="Usuario">
+            </mat-form-field>
+            <mat-form-field class="">
+                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
+            </mat-form-field>
+            <mat-form-field class="">
+                <mat-select formControlName="rol"value="A">
+                    <mat-option value="A">Administrador</mat-option>
+                    <mat-option value="V">Venta</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="formbutton">
+                <button mat-raised-button color="primary" style="margin-left: 130px;">Ingresar</button>
+                <button mat-raised-button color="warn" style="margin-left: 20px;">salir</button>
+
+            </div>
+        </form>
+    </div>
+</div>

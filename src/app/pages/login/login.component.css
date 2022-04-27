@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+mat-form-field {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    font-family: 'Numans', sans-serif;
+    margin-top: 7%;
+}
+
+.contenido {
+    width: 430px;
+    height: 100px;
+    background-color: #0078ff;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.black {
+    width: 430px;
+    height: auto;
+    padding: black;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.formbutton {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+}
