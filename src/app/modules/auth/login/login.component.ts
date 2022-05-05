@@ -28,15 +28,15 @@ export class LoginComponent implements OnInit {
 
   formulario() {
     this.from = this.Builder.group({
-      txtusuario: ['', Validators.required],
-      password: ['', Validators.required],
-      rol: ['A'],
+      txtUsuario: ['', Validators.required],
+      txtPassword: ['', Validators.required],
+      txtRol: ['A'],
 
     })
   }
   signIn(): void {
     console.log(this.from.value)
-    if (this.from.get("txtusuario")?.value == 'kirby' && this.from.get("password")?.value == '123' && this.from.get("rol")?.value == 'V') {
+    if (this.from.get("txtUsuario")?.value == 'kirby' && this.from.get("txtPassword")?.value == '123' && this.from.get("txtRol")?.value == 'V') {
       this.incorrecto == false;
       this.loginSerive.logIn();
       console.log("entre");
