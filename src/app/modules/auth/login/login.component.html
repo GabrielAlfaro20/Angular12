@@ -1,38 +1,32 @@
-<div class="black" style="margin-top: 150px;">
-    <div class="contenido">
-        <h2>Inicia Sesión</h2>
-    </div>
-    <div style="margin-top: 10px;">
-        <form [formGroup]="from">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="assets/logo.png" style="width: 350px; height: 170px;" id="icon" alt="User Icon" />
+        </div>
+        <form [formGroup]="from" (ngSubmit)="FromVis()">
             <mat-form-field class="">
-                <input type="text" maxlength="50" type="text" formControlName="txtusuario" matInput
-                    placeholder="Usuario">
+                <input type="text" class="form-control" formControlName="txtUsuario" matInput placeholder="Correo">
             </mat-form-field>
-            <p *ngIf="incorrecto && f.txtusuario.value" style="color: red;">No puedes dejar campos vacios</p>
 
             <mat-form-field class="">
-                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="password"
-                    formControlName="password">
+                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="clave"
+                    formControlName="txtPassword">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
-
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
-            <!--             <p *ngIf="incorrecto  &&f.password.value" style="color: red;">Debes Ingresas un Periodo</p>
- -->
             <mat-form-field class="">
-                <mat-select formControlName="rol" value="A">
+                <mat-select formControlName="txtRol" value="A">
                     <mat-option value="A">Administrador</mat-option>
                     <mat-option value="V">Venta</mat-option>
                 </mat-select>
             </mat-form-field>
             <div class="formbutton">
-                <button (click)="signIn()" mat-raised-button color="primary"
-                    style="margin-left: 130px;">Ingresar</button>
-                <button mat-raised-button color="warn" style="margin-left: 20px;">salir</button>
+                <button  mat-raised-button color="warn" style="text-align: center;">Ingresar</button>
+            </div>
+            <div class="separado">
             </div>
         </form>
-
     </div>
 </div>

@@ -1,0 +1,66 @@
+<div class="example-container">
+    <div>
+        <mat-toolbar color="warn">
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+                <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+            </button>
+            <div style="width: 100%;justify-content: center;">
+                <p style="text-align: center;">dataPrint</p>
+            </div>
+            <span class="example-spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </mat-menu>
+        </mat-toolbar>
+    </div>
+    <!---->
+    <mat-sidenav-container class="example-sidenav-container">
+        <mat-sidenav #sidenav style="width: 28%" mode="push" opened="false">
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['home']" style="cursor: pointer">
+                <mat-icon>home</mat-icon>
+                <span>Menu Principal</span>
+            </button>
+            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['producto/productos']"
+                style="cursor: pointer">
+                <mat-icon>shopping_cart</mat-icon>
+                <span>Productos</span>
+            </button>
+            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['home']" style="cursor: pointer">
+                <mat-icon>home</mat-icon>
+                <span>Provedores</span>
+            </button>
+            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['home']" style="cursor: pointer">
+                <mat-icon>shopping_cart</mat-icon>
+                <span>Contacto</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="confiUsuario = !confiUsuario" href="/" style="cursor: pointer">
+                <mat-icon>settings</mat-icon>
+                <span class="full-width" *ngIf="isExpanded || isShowing">Perfiles</span>
+            </button>
+            <mat-list-item>
+                <div class="submenu" [ngClass]="{'expanded' : confiUsuario}" *ngIf="isShowing || isExpanded">
+                    <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/home']" style="cursor: pointer">
+                        <mat-icon>tune</mat-icon>
+                        <span>Mantenimiento De Usuarios</span>
+                    </button>
+                    <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/home']" style="cursor: pointer">
+                        <mat-icon>list</mat-icon>
+                        <span>Mantenimiento De Roles</span>
+                    </button>
+                </div>
+            </mat-list-item>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

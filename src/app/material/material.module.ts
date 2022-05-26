@@ -17,7 +17,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DateAdapter, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { CustomDateAdapter } from './custom-adapter';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -35,7 +34,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   imports: [
     CommonModule
   ],
-  exports:[
+  exports: [
     MatTableModule,
     MatButtonModule,
     MatIconModule,
@@ -64,9 +63,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTooltipModule,
     MatRadioModule
   ],
-  providers:[
+  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
-    { provide: DateAdapter, useClass: CustomDateAdapter }
   ]
-})  
+})
 export class MaterialModule { }
