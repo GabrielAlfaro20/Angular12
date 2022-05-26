@@ -4,32 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from './modules/material/material.module';
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-
+import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProductosComponent } from './modules/pages/productos/productos.component';
-import { ConfiUsuarioComponent } from './modules/pages/confi-usuario/confi-usuario.component';
+import { AuthComponent } from './modules/auth/auth.component';
+import { ProductoComponent } from './modules/producto/producto.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    ProductosComponent,
-    ConfiUsuarioComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule,//material
+    MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    MatProgressSpinnerModule,
-    
-
   ],
   providers: [],
   bootstrap: [AppComponent]

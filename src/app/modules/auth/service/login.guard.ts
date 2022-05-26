@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 
@@ -8,11 +8,11 @@ import { LoginService } from './login.service';
 })
 export class LoginGuard implements CanActivate {
   constructor(private loginService:LoginService,private router:Router){}
-  canActivate():boolean | UrlTree {
-    return this.isUserLoggedIn();
+    canActivate():boolean | UrlTree {
+      return this.isUserLoggedIn();
   }
-
   private isUserLoggedIn(): boolean | UrlTree {
+    
     return this.loginService.loggedIn || this.router.parseUrl('/auth/login');
   }
   
