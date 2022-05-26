@@ -1,36 +1,21 @@
-<!-- <div class="black" style="margin-top: 150px;">
-    <div class="contenido">
-        <h2>Inicia Sesión</h2>
-    </div>
-    <div style="margin-top: 10px;">
-      
-
-    </div>
-</div> -->
-
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Icon -->
         <div class="fadeIn first">
             <img src="assets/logo.png" style="width: 350px; height: 170px;" id="icon" alt="User Icon" />
         </div>
-        <form [formGroup]="from">
+        <form [formGroup]="from" (ngSubmit)="FromVis()">
             <mat-form-field class="">
-                <input type="text" maxlength="50" type="text" formControlName="txtUsuario" matInput
-                    placeholder="Usuario">
+                <input type="text" class="form-control" formControlName="txtUsuario" matInput placeholder="Correo">
             </mat-form-field>
-            <p *ngIf="incorrecto && f.txtUsuario.value" style="color: red;">No puedes dejar campos vacios</p>
 
             <mat-form-field class="">
-                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="password"
+                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="clave"
                     formControlName="txtPassword">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
-
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
-            <p *ngIf="incorrecto  &&f.txtPassword.value" style="color: red;">Debes Ingresas un Periodo</p>
             <mat-form-field class="">
                 <mat-select formControlName="txtRol" value="A">
                     <mat-option value="A">Administrador</mat-option>
@@ -38,8 +23,7 @@
                 </mat-select>
             </mat-form-field>
             <div class="formbutton">
-                <button  (click)="signIn()" mat-raised-button color="warn"
-                    style="text-align: center;">Ingresar</button>
+                <button  mat-raised-button color="warn" style="text-align: center;">Ingresar</button>
             </div>
             <div class="separado">
             </div>
