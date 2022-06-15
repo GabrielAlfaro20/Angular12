@@ -1,4 +1,4 @@
-export interface Usuarios {
+/* export interface Usuarios {
     idusuarios: number;
     correo: string;
     clave: string;
@@ -10,5 +10,10 @@ export interface Usuarios {
 export interface Roles {
     idrol: number;
     tipuser: string;
+} */
+export interface Login{
+  correo  : string;
+  clave : string
 }
+
 
