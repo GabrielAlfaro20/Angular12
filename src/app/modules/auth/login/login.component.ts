@@ -10,7 +10,7 @@ import { Login } from '../model/login.modal';
 })
 
 export class LoginComponent implements OnInit {
-  public from!: FormGroup;
+  public form!: FormGroup;
   hide = true;
 
 
@@ -25,26 +25,34 @@ export class LoginComponent implements OnInit {
     this.ingresar();
   }
   formulario() {
-    this.from = this.Builder.group({
+    this.form = this.Builder.group({
       txtUsuario: ['', Validators.required],
       txtPassword: ['', Validators.required],
-      txtRol: ['A'],
+      txtRol: ['A' , Validators.required],
     });
   }
 
   get f() {
-    return this.from.controls;
+    return this.form.controls;
   }
-  ingresar() {
-    let login: Login ={
-      correo : this.from.getRawValue().txtUsuario,
-      clave : this.from.getRawValue().txtPassword
-    }
-    this.login.crearToken(login).subscribe(data => {
-       console.log(data)
-    })
-    console.log(login)
+  validar:boolean=false
+  vacio:boolean=false
+  ingresar(){
+  if(this.form.get('txtUsuario')?.value =='kirby' &&
+  this.form.get('txtPassword')?.value =='123' &&
+  this.form.get('txtRol')?.value =='A'){
+    this.router.navigate(['/home']);
+  }
 
+ else if(this.form.get('txtUsuario')?.value =='' &&
+  this.form.get('txtPassword')?.value ==''){
+    this.vacio=true
+    this.validar=false
+    }
+else{
+  this.vacio=false
+  this.validar=true
+}
   }
 
 }

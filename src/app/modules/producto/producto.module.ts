@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductoComponent } from './producto.component';
-import { ProductosComponent } from './productos/productos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
+import { CategoriaProductoComponent } from './categoria-producto/categoria-producto.component';
+import { MantenimientoProductoComponent } from './mantenimiento-producto/mantenimiento-producto.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ProductoComponent,
     children: [
-      { path: 'productos', component: ProductosComponent },
+      { path: 'categoria-producto', component: CategoriaProductoComponent },
+      { path: 'mantenimiento-producto', component: MantenimientoProductoComponent },
+
     ]
 
   }
@@ -26,7 +29,9 @@ const routes: Routes = [
     MaterialModule,
   ],
   exports: [RouterModule],
-  providers: [],
-  declarations: [ProductoComponent, ProductosComponent],
+  declarations: [
+    ProductoComponent,
+    CategoriaProductoComponent,
+    MantenimientoProductoComponent,],
 })
 export class ProductoModule { }
