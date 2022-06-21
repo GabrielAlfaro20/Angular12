@@ -5,17 +5,24 @@
                 <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
                 <mat-icon *ngIf="sidenav.opened">close</mat-icon>
             </button>
-            <div style="width: 100%;justify-content: center;">
-                <p style="text-align: center;">dataPrint</p>
+            <div style="width: 100%;justify-content: center; text-align: center;">
+               <span>dataPrint</span>
             </div>
             <span class="example-spacer"></span>
+            <div style="justify-content: center;display: flex;margin: initial;">
+              <h4 style="margin-right: 10px;font-size: 15px;">
+                <span style="font-size: 17px;font-weight:bold;letter-spacing: 1px;">Admin</span>
+              </h4>
+              </div>
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>
-                    <mat-icon>exit_to_app</mat-icon>
-                    <span>Cerrar Sesión</span>
+                    <button mat-menu-item [routerLink]="['/auth/login']">
+                      <mat-icon>exit_to_app</mat-icon>
+                      <span>Cerrar Sesión</span>
+                  </button>
                 </button>
             </mat-menu>
         </mat-toolbar>
@@ -28,36 +35,91 @@
                 <mat-icon>home</mat-icon>
                 <span>Menu Principal</span>
             </button>
-            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['producto/productos']"
-                style="cursor: pointer">
+            <!---Inicio Productos-->
+            <button mat-menu-item (click)="showProductos = !showProductos" href="/producto" style="cursor: pointer">
                 <mat-icon>shopping_cart</mat-icon>
-                <span>Productos</span>
-            </button>
-            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['home']" style="cursor: pointer">
-                <mat-icon>home</mat-icon>
-                <span>Provedores</span>
-            </button>
-            <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['home']" style="cursor: pointer">
-                <mat-icon>shopping_cart</mat-icon>
-                <span>Contacto</span>
-            </button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item (click)="confiUsuario = !confiUsuario" href="/" style="cursor: pointer">
-                <mat-icon>settings</mat-icon>
-                <span class="full-width" *ngIf="isExpanded || isShowing">Perfiles</span>
+                <span class="full-width"*ngIf="isExpanded || isShowing">Producto</span>
             </button>
             <mat-list-item>
-                <div class="submenu" [ngClass]="{'expanded' : confiUsuario}" *ngIf="isShowing || isExpanded">
-                    <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/home']" style="cursor: pointer">
-                        <mat-icon>tune</mat-icon>
-                        <span>Mantenimiento De Usuarios</span>
-                    </button>
-                    <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/home']" style="cursor: pointer">
-                        <mat-icon>list</mat-icon>
-                        <span>Mantenimiento De Roles</span>
-                    </button>
-                </div>
+              <div class="submenu" [ngClass]="{'expanded' : showProductos}" *ngIf="isShowing || isExpanded">
+                <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/producto/mantenimiento-producto']"
+                  style="cursor:pointer;">
+                  <mat-icon>tune</mat-icon>
+                  <span>Mantenimiento de Productos</span>
+                </button>
+                <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/producto/categoria-producto']"
+                  style="cursor: pointer;">
+                  <mat-icon>tune</mat-icon>
+                  <span>Categorias de Productos</span>
+                </button>
+              </div>
+          </mat-list-item>
+            <!--Fin de Productos-->
+            <!--Inicio Ventas-->
+            <button mat-menu-item (click)="showVentas = !showVentas" href="/ventas" style="cursor: pointer">
+              <mat-icon>shopping_basket</mat-icon>
+              <span class="full-width"*ngIf="isExpanded || isShowing">Ventas</span>
+             </button>
+            <!--Fin Ventas-->
+            <!--Inicio Compras-->
+            <button mat-menu-item (click)="showCompras = !showCompras" href="/compras" style="cursor: pointer">
+              <mat-icon>event_seat</mat-icon>
+              <span class="full-width"*ngIf="isExpanded || isShowing">Compras</span>
+            </button>
+            <!--Fin Compras-->
+            <mat-divider></mat-divider>
+            <!--Inicio Empleado-->
+            <button mat-menu-item (click)="showEmpleados = !showEmpleados" href="/empleado" style="cursor: pointer">
+              <mat-icon>account_box</mat-icon>
+              <span class="full-width"*ngIf="isExpanded || isShowing">Empleados</span>
+            </button>
+            <mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showEmpleados}" *ngIf="isShowing || isExpanded">
+                <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/empleado/confi-empleado']"
+                  style="cursor: pointer;">
+                  <mat-icon>tune</mat-icon>
+                  <span>Configuracion de Empleado</span>
+                </button>
+              </div>
             </mat-list-item>
+            <!--Fin Empleado-->
+            <!--Inicio Cliente-->
+            <button mat-menu-item (click)="showClientes = !showClientes" href="/cliente" style="cursor: pointer">
+              <mat-icon>person</mat-icon>
+              <span class="full-width"*ngIf="isExpanded || isShowing">Clientes</span>
+            </button>
+            <mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showClientes}" *ngIf="isShowing || isExpanded">
+                <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/cliente/confi-cliente']"
+                  style="cursor: pointer;">
+                  <mat-icon>tune</mat-icon>
+                  <span>Configuracion de Clientes</span>
+                </button>
+              </div>
+            </mat-list-item>
+            <!--Fin Cliente-->
+            <!--Inicio Proveedores-->
+            <button mat-menu-item (click)="showProveedores = !showProveedores" href="/proveedores" style="cursor: pointer">
+              <mat-icon>assignment</mat-icon>
+              <span class="full-width"*ngIf="isExpanded || isShowing">Proveedores</span>
+            </button>
+            <mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showProveedores}" *ngIf="isShowing || isExpanded">
+                <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/proveedores/confi-provedores']"
+                  style="cursor: pointer;">
+                  <mat-icon>tune</mat-icon>
+                  <span>Configuracion de Proveedores</span>
+                </button>
+              </div>
+            </mat-list-item>
+            <!--Fin Proveedores-->
+            <mat-divider></mat-divider>
+            <!--Inicio de Reportes-->
+            <button mat-menu-item (click)="showReportes= !showReportes" href="/reportes" style="cursor: pointer">
+              <mat-icon>ballot</mat-icon>
+              <span class="full-width"*ngIf="isExpanded || isShowing">Reportes</span>
+            </button>
+            <!--Fin de Reportes-->
         </mat-sidenav>
         <mat-sidenav-content>
             <router-outlet></router-outlet>
