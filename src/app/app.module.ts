@@ -1,3 +1,4 @@
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 
 import { NgModule } from '@angular/core';
@@ -37,7 +38,9 @@ import { ProductoComponent } from './modules/producto/producto.component';
       provide:HTTP_INTERCEPTORS,
       useClass:AuthInterceptorService,
       multi:true
-    }
+    },
+    {provide:JWT_OPTIONS, useValue:JWT_OPTIONS},// trabaja de la mano con JwtHelperService
+    JwtHelperService // permite decodificar y verificar los token desde el lado del servidor
   ],
   bootstrap: [AppComponent]
 })
