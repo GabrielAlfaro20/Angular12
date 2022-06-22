@@ -22,7 +22,7 @@ export class LoginServiceService {
     return this.http.put<Usuarios[]>(baseUrl + "editarUsuario/", usuarios)
   } */
   crearToken(crear : Login) : Observable<Login[]>{
-    return this.http.post<Login[]>(baseUrl + "crearToken/",crear)
+    return this.http.post<Login[]>(baseUrl+"crearToken",crear);
   }
 }
 
