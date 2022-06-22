@@ -74,7 +74,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "appFrontWebDataPrint:build:production"
+              "browserTarget": "appFrontWebDataPrint:build:production",
+              "proxyConfig":"proxy.config.json"
             },
             "development": {
               "browserTarget": "appFrontWebDataPrint:build:development"

@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 
@@ -23,7 +24,9 @@ import { MaterialModule } from 'src/app/material/material.module';
     MaterialModule
 
   ],
-  providers: [],
+  providers: [
+
+  ],
 
 })
 export class AuthModule { }
