@@ -1,1 +1,26 @@
-<p>mantenimiento-producto works!</p>
+<div class="caja-principal">
+    <h1><strong>MANTENIMIENTO DE PRODUCTOS</strong></h1>
+    <div class="caja-contenido">
+        <div class="nav-busqueda">
+            <mat-form-field appearance="standard">
+              <div class="barra-busqueda">
+                <mat-icon>search</mat-icon>
+                <input matInput (keyup)="($event)" placeholder="Buscar" #input>
+              </div>
+            </mat-form-field>
+          </div>
+          <div class="caja-registro">
+              <div class="campo-botones">
+                <div class="dos" >
+                  <button   class=" btn btn-success" id="boton-add">
+                   Registrar Producto
+                  </button>
+                  <button mat-fab button="submit"  style="float: right ; margin-top:0px;background-color: darkorchid;"
+                    id="boton-agregar">
+                      <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+          </div>
+    </div>
+  </div>
