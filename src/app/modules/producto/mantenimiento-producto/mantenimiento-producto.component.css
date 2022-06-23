@@ -1,0 +1,191 @@
+.caja-contenido{
+    margin: 2rem auto;
+    width: 100%;
+  }
+  
+  #texto-validacion{
+  font-size: 11px;
+  }
+  
+  .caja-principal{
+    width: 90%;
+    margin: 2rem auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  /* td, th {
+    width: 17%;
+  } */
+  
+  .barra-busqueda{
+    float: right;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .nav-busqueda{
+    width: 20%;
+    float: right;
+    margin-right: 2%;
+  }
+  
+  .botones{
+    margin: 0 auto;
+  }
+  
+  .campo-botones{
+    display: block;
+  }
+  
+  #boton-regresar{
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 1.5% 46%;
+  }
+  
+  #buscar-cuenta{
+    cursor: pointer;
+  }
+  
+  #boton-agregar{
+    margin-top: 1.5%;
+  }
+  
+  .titulo{
+    margin:1%;
+  }
+  
+  .caja-registro{
+      border: 1px solid rgb(29, 3, 3);
+    width: 100%;
+    margin: 2rem auto;
+    padding: 1rem 1rem;
+    border-radius: 15px;
+  }
+  
+  .caja-secundario{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .campo{
+      width: 100%;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  
+  .campo-secundario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .campo-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+  
+  .campo-intermedio{
+    display: flex;
+    flex-direction: row;
+  }
+  .dos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2%;
+     /* background-color: blueviolet;
+     color: brown; */
+  }
+  
+  #boton-add{
+  padding: 12px 16px;
+  }
+  
+  
+  .dos .mat-form-field{
+    width: 100%;
+  }
+  .dos li {
+   list-style:none;
+   all: none;
+  }
+  
+  .valida-campo{
+  display: block;
+  margin-top: 0;
+  }
+  
+  .valida-campo p{
+  color: red;
+  font-size: 12px;
+  
+  }
+  
+  .principal{
+  width: 80%;
+  margin: 3% auto;
+  }
+  
+  .caja-secundaria{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  }
+  
+  .input-cuenta{
+  width: 25%;
+  }
+  
+  .input-select{
+  width: 80%;
+  }
+  
+  .input-busqueda{
+  width: 5%;
+  margin-top: 2%;
+  margin-left: 1%;
+  }
+  
+  .input-descripcion{
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  }
+  
+  .input-moneda{
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    }
+  
+  .input-combinado{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  }
+  
+  .caja-descripcion{
+  width: 70%;
+  }
+  
+  .caja-select{
+  width: 20%;
+  margin-left: 10%;
+  }
+  
