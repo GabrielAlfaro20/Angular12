@@ -21,6 +21,7 @@ import { ProductoComponent } from './modules/producto/producto.component';
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
