@@ -1,0 +1,72 @@
+<div class="principal">
+  <div class="nav-busqueda position-sticky sticky-top">
+    <h3 class="titulo" style="justify-content: center;padding-top: 2%;width: 30%;"> Gestionar Ventas</h3>
+    <mat-form-field appearance="standard" style="float: left; width: 30%; top: -10px; margin-left:7% ;">
+      <div class="barra-busqueda">
+        <mat-icon style="margin-top: 1.2%;margin-left: -12%;">search</mat-icon>
+        <input matInput placeholder="Buscar" #input maxlength="80" id="mySelect">
+      </div>
+    </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8" style="margin-left: 50px;width: 92%;">
+    <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
+      <ng-container matColumnDef="cod_Venta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="cod_Venta" class="cod_venta"> Cod. Venta</th>
+        <td mat-cell *matCellDef="let row" class="cod_venta">
+          {{row.cod_Venta}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="tip_Venta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="tip_Venta" class="tipove"> Tip. Venta </th>
+        <td mat-cell *matCellDef="let row" class="tipove">
+          {{row.tip_Venta}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="cliente" class="cliente"> Cliente </th>
+        <td mat-cell *matCellDef="let row" class="cliente">
+          {{row.cliente}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="direccion" class="direccion"> direccion </th>
+        <td mat-cell *matCellDef="let row" class="direccion">
+          {{row.direccion}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="fecha" class="fecha">fecha</th>
+        <td mat-cell *matCellDef="let row" class="fecha">
+          {{row.fecha}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones" class="acciones">
+        <th style="padding-left:2.5%;" mat-header-cell *matHeaderCellDef class="botones"> Acciones </th>
+        <td mat-cell *matCellDef="let row" class="botones">
+          <button (click)="consultar(row)"
+            style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;vertical-align: text-top;">
+            <mat-icon style="color: black;margin-top: 20%;">edit</mat-icon>
+          </button>
+          <button class="consultar"
+            style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
+            <mat-icon style="color: #3f51b5;margin-top: 20%;">visibility</mat-icon>
+          </button>
+          <button
+            style="height: 25px;position: static;color: red;border: none;background: transparent;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
+            <mat-icon style="margin-top: 20%">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-table"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se encontraron resultados para "{{input.value}}"</td>
+      </tr>
+    </table>
+  </div>
+  <button mat-fab style="margin-left: 45%;padding-top: 12px; background-color: dodgerblue;"
+  id="boton-agregar">
+  <mat-icon style="margin: 0 auto;line-height:revert;margin-top: -29px;">add</mat-icon>
+</button>
+</div>

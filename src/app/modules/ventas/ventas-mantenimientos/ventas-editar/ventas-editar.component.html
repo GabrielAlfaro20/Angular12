@@ -1,0 +1,112 @@
+<div class="card">
+  <div class="card-header">
+    Editar Ventas
+    <button type="button" class=" btn btn-danger" style="float:right; align-items: flex-end;" (click)="cerrar()"><i
+        class="fas fa-long-arrow-alt-left"></i></button>
+  </div>
+  <div class="card-body" style="margin: auto; width: 100%">
+    <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+      <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+        <mat-form-field style="width: 170px;" appearance="standard" class="search">
+          <mat-label>Cod. Venta</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 30px;width: 370px;">
+          <mat-label>Cliente</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+      <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+        <mat-form-field style="width: 170px;" appearance="standard" class="search">
+          <mat-select placeholder="Tipo de Venta">
+            <mat-option>DELIVERI
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 30px; width: 370px;" appearance="standard" class="search">
+          <mat-label>Direccion</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+      <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+        <mat-form-field style="width: 170px;" appearance="standard" class="search">
+          <mat-select placeholder="Tipo de Pago">
+            <mat-option>Tarjeta</mat-option>
+            <mat-option>Debito</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="margin-left: 30px; width: 170px;" appearance="standard" class="search">
+          <mat-label>Numero de Pago</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field style="width: 170px;margin-left: 30px; " appearance="standard" class="search">
+          <mat-select placeholder="Comprobante de Pago">
+            <mat-option>Tarjeta</mat-option>
+            <mat-option>Debito</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <!--MAT TABLE-->
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
+        <ng-container matColumnDef="id_producto">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="id_producto" class="id_producto">Id. Producto</th>
+          <td mat-cell *matCellDef="let row" class="id_producto">
+            {{row.id_producto}}</td>
+        </ng-container>
+        <ng-container matColumnDef="producto">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="producto" class="producto">Producto</th>
+          <td mat-cell *matCellDef="let row" class="producto">
+            {{row.producto}}</td>
+        </ng-container>
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="cantidad" class="cantidad">Cantidad</th>
+          <td mat-cell *matCellDef="let row" class="cantidad">
+            {{row.cantidad}}</td>
+        </ng-container>
+        <ng-container matColumnDef="precio_Unitario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="precio_Unitario" class="precio_Unitario">Precio
+            Unitario</th>
+          <td mat-cell *matCellDef="let row" class="precio_Unitario">
+            {{row.precio_Unitario}}</td>
+        </ng-container>
+        <ng-container matColumnDef="precio_subTotal">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="precio_subTotal" class="precio_subTotal">Precio Sub
+            Total</th>
+          <td mat-cell *matCellDef="let row" class="precio_subTotal">
+            {{row.precio_subTotal}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-table"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+    <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+      <mat-form-field style="width: 170px;" appearance="standard" class="search">
+        <mat-select placeholder="Estado">
+          <mat-option>Tarjeta</mat-option>
+          <mat-option>Debito</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>Total</p>
+      </div>
+      </div>
+  <div class="dos">
+    <button type="button" class=" btn btn-success"><i class="fas fa-save"
+      type="button"></i></button>
+<button type="button" class=" btn btn-danger" (click)="cerrar()"><i
+      class="fas fa-long-arrow-alt-left"></i></button>
+
+  </div>
+</div>

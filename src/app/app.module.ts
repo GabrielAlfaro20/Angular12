@@ -1,5 +1,4 @@
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { CookieService } from 'ngx-cookie-service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +21,7 @@ import { ProductoComponent } from './modules/producto/producto.component';
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,

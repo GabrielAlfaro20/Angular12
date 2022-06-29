@@ -60,6 +60,15 @@
               <mat-icon>shopping_basket</mat-icon>
               <span class="full-width"*ngIf="isExpanded || isShowing">Ventas</span>
              </button>
+             <mat-list-item>
+              <div class="submenu" [ngClass]="{'expanded' : showVentas}" *ngIf="isShowing || isExpanded">
+                <button mat-menu-item (click)="sidenav.toggle()" [routerLink]="['/ventas/ventas-mantenimientos']"
+                  style="cursor: pointer;">
+                  <mat-icon>tune</mat-icon>
+                  <span>Gestionar de Ventas</span>
+                </button>
+              </div>
+            </mat-list-item>
             <!--Fin Ventas-->
             <!--Inicio Compras-->
             <button mat-menu-item (click)="showCompras = !showCompras" href="/compras" style="cursor: pointer">

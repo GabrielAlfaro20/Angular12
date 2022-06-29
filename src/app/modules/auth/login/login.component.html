@@ -6,29 +6,25 @@
         </div>
         <form [formGroup]="form">
             <mat-form-field class="">
-                <input type="text" class="form-control"  formControlName="txtUsuario" matInput placeholder="Correo">
+                <input type="text" class="form-control" (keyup)="usuario()" formControlName="txtUsuario" matInput placeholder="Correo">
             </mat-form-field>
+            <p *ngIf="validarUsuario && f.txtUsuario" style="color: red;">El Usuario es Obligatorio</p>
 
             <mat-form-field class="">
-                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="clave"
+                <input maxlength="50" (keyup)="clave()" [type]="hide ? 'password' : 'text'" matInput placeholder="clave"
                     formControlName="txtPassword">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
                 </button>
             </mat-form-field>
-            <!-- <mat-form-field class="">
-                <mat-select formControlName="txtRol" value="A">
-                    <mat-option value="A">Administrador</mat-option>
-                    <mat-option value="V">Venta</mat-option>
-                </mat-select>
-            </mat-form-field> -->
+            <p *ngIf="validarClave && f.txtPassword" style="color: red;">La Clave es Obligatorio </p>
+            <p *ngIf="usuarioNo "style="color: red;">El Usuario o la clave no existe </p>
+
             <div class="formbutton">
                 <button  mat-raised-button color="warn" style="text-align: center;" (click)="ingresar()">Ingresar</button>
             </div>
             <div class="separado">
             </div>
-            <p *ngIf="validar" style="color: red;">Correo o clave incorrecta</p>
-            <p *ngIf="vacio" style="color: red;">no puede dejar los campos vacios</p>
 
           </form>
     </div>

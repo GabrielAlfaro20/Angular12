@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Login} from '../model/login.modal'
+import { UsuariosList } from '../model/loginList';
 
 const baseUrl = environment.HOST + '/usuarios/';
 
@@ -14,9 +15,10 @@ export class LoginServiceService {
 
   constructor(private http: HttpClient,
     private jwtHelperService:JwtHelperService) { }
-/*   listarUsuarios(): Observable<Usuarios[]> {
-    return this.http.get<Usuarios[]>(baseUrl + "listarUsuarios/");
+   listarUsuarios(): Observable<UsuariosList[]> {
+    return this.http.get<UsuariosList[]>(baseUrl + "listarUsuarios/");
   }
+  /*
   registarUsuario(usuarios: Usuarios): Observable<Usuarios[]> {
     return this.http.post<Usuarios[]>(baseUrl + "regisrarUsuario/", usuarios)
   }
