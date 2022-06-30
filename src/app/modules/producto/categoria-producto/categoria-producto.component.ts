@@ -13,7 +13,7 @@ import { CategoriaService } from '../services/categoria.service';
 })
 export class CategoriaProductoComponent implements OnInit {
   listcat? : Categoria[];
-  displayedColumns : string []=['nombreCate','acciones'];
+  displayedColumns : string []=['idcategorias','nombreCate','acciones'];
   dataSource!: MatTableDataSource<Categoria>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -23,34 +23,31 @@ export class CategoriaProductoComponent implements OnInit {
   ngOnInit(): void {
     this.listarCategoria();
     this.cargarCuentas()
-  
-   
-
   }
-
   listarCategoria(){
     this.listarCat.listarCategoria().subscribe(data =>{
-      console.log(data);
-      
+      console.log(data);   
     })
   }
   consultar(){
-
   }
-
   crearTabla(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.paginator.hidePageSize = false;
   }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+     if (this.dataSource.paginator) {
+       this.dataSource.paginator.firstPage();
+     }
+ }
   cargarCuentas() {
     this.listarCat.listarCategoria().subscribe((data) => {
       console.log(data);
       this.crearTabla(data);
-      
-
     });
 }
 }

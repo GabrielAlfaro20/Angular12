@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Categoria } from '../model/categoria';
 
@@ -9,6 +9,7 @@ const baseUrl = environment.HOST + '/categoria/'
   providedIn: 'root'
 })
 export class CategoriaService {
+  private mensajeCambio = new Subject<string>();
 
   constructor(
     private http:HttpClient
@@ -16,10 +17,22 @@ export class CategoriaService {
   
   {
    }
+
+   setMensajeCambio(mensaje: string) {
+    this.mensajeCambio.next(mensaje);
+  }
+
+  getMensajeCambio() {
+    return this.mensajeCambio.asObservable();
+  }
+
    listarCategoria(): Observable<Categoria[]> {
     return this.http.get<Categoria[]> (baseUrl+"listar");
    }
 
+   eliminarCategoria(parametro:string){
+    return this.http.delete(baseUrl+"/eliminar/"+parametro);
+  }
 
 
    
