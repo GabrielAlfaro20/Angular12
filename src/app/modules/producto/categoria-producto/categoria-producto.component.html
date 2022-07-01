@@ -1,19 +1,23 @@
-<div class="caja-principal">
-    <h1><strong>CATEGORIA DE PRODUCTOS</strong></h1>
-    <div class="caja-contenido">
-        <div class="nav-busqueda">
-            <mat-form-field appearance="standard">
-              <div class="barra-busqueda">
-                <mat-icon>search</mat-icon>
-                <input matInput (keyup)="($event)" placeholder="Buscar" #input>
-              </div>
-            </mat-form-field>
-        </div>
+<div class="principal">
+  <div class="nav-busqueda position-sticky sticky-top">
+    <h3 class="titulo" style="justify-content: center;padding-top: 2%;width: 30%;"> MANTENIMIENTO DE CATEGORÍAS</h3>
+    <mat-form-field appearance="standard" style="float: left; width: 30%; top: -10px; margin-left:7% ;">
+      <div class="barra-busqueda">
+        <mat-icon style="margin-top: 1.2%;margin-left: -12%;">search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input maxlength="80" id="mySelect">
+      </div>
+    </mat-form-field>
+  </div>
 
         <div class="mat-elevation-z8" style="margin-left: 50px;width: 92%;">
           <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
            
-            
+            <ng-container matColumnDef="idcategorias">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="idcategorias" class="idcategorias">CÓDIGO</th>
+              <td mat-cell *matCellDef="let row" class="idcategorias">
+                {{row.idcategorias}}
+              </td>
+            </ng-container>
             <ng-container matColumnDef="nombreCate">
               <th mat-header-cell *matHeaderCellDef mat-sort-header="nombreCate" class="nombreCate">NOMBRE DE CATEGORIA</th>
               <td mat-cell *matCellDef="let row" class="nombreCate">
@@ -22,7 +26,7 @@
             </ng-container>
       
             <ng-container matColumnDef="acciones" class="acciones">
-              <th style="padding-left:2.5%;" mat-header-cell *matHeaderCellDef class="botones"> Acciones </th>
+              <th style="padding-left:2.5%;" mat-header-cell *matHeaderCellDef class="botones"> ACCIONES </th>
               <td mat-cell *matCellDef="let row" class="botones">
                 <button
                   style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;vertical-align: text-top;">
@@ -44,7 +48,7 @@
               <td class="mat-cell" colspan="4">No se encontraron resultados para "{{input.value}}"</td>
             </tr>
           </table>
-          <mat-paginator [pageSizeOptions]="[14,16,18,22]" aria-label="Select page of users"></mat-paginator>
+          <mat-paginator [pageSizeOptions]="[5,10,15]" aria-label="Select page of users"></mat-paginator>
         </div>
 
 
@@ -60,7 +64,7 @@
                   <button   class=" btn btn-success" id="boton-add">
                    Registrar Categoría
                   </button>
-                  <button mat-fab button="submit"  style="float: right ; margin-top:0px;background-color: darkorchid;"
+                  <button mat-fab style="margin-left: 45%;padding-top: 12px; background-color: dodgerblue;"
                     id="boton-agregar">
                       <mat-icon>add</mat-icon>
                   </button>
@@ -69,4 +73,3 @@
           </div>
     </div>
     <button type="button" class=" btn btn-danger" id="boton-regresar" routerLink="/home"><i class="fas fa-long-arrow-alt-left"></i></button>
-  </div>

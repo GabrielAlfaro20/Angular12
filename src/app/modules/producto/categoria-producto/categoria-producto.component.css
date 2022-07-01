@@ -1,89 +1,50 @@
-.caja-contenido{
-    margin: 2rem auto;
-    width: 100%;
-  }
+.principal{
+  display: flex;
+  flex-direction: column;
+}
+.barra-busqueda{
+  float: right;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 1%;
+  height: 60%;
+}
+.nav-busqueda{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  float: right;
+  background-color: white !important;
+}
+.titulo{
+  font-size: 24px;
+  margin:0;
+  background-color: white !important;
+  padding-left: 3%;
+  font-weight: bold;
+}
   
-  #texto-validacion{
-  font-size: 11px;
-  }
-  
-  .caja-principal{
-    width: 90%;
-    margin: 2rem auto;
-  }
-  
-  table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  /* td, th {
-    width: 17%;
-  } */
-  
-  .barra-busqueda{
-    float: right;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .nav-busqueda{
-    width: 20%;
-    float: right;
-    margin-right: 2%;
-  }
-  
-  .botones{
-    margin: 0 auto;
-  }
-  
-  .campo-botones{
-    display: block;
-  }
-  
+
   #boton-regresar{
     padding-left: 30px;
     padding-right: 30px;
     margin: 1.5% 46%;
   }
   
-  #buscar-cuenta{
-    cursor: pointer;
-  }
   
   #boton-agregar{
     margin-top: 1.5%;
   }
   
-  .titulo{
-    margin:1%;
-  }
+  
   
   .caja-registro{
       border: 1px solid rgb(29, 3, 3);
-    width: 100%;
+    width: 90%;
     margin: 2rem auto;
     padding: 1rem 1rem;
     border-radius: 15px;
-  }
-  
-  .caja-secundario{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-  
-  .campo{
-      width: 100%;
-      margin-top: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
   }
   
   .campo-secundario{
@@ -91,6 +52,8 @@
     display: flex;
     flex-direction: column;
   }
+  
+  
   
   
   .campo-row{
@@ -137,36 +100,7 @@
   
   }
   
-  .principal{
-  width: 80%;
-  margin: 3% auto;
-  }
-  
-  .caja-secundaria{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  }
-  
-  .input-cuenta{
-  width: 25%;
-  }
-  
-  .input-select{
-  width: 80%;
-  }
-  
-  .input-busqueda{
-  width: 5%;
-  margin-top: 2%;
-  margin-left: 1%;
-  }
-  
-  .input-descripcion{
-  width: 65%;
-  display: flex;
-  flex-direction: row;
-  }
+
   
   .input-moneda{
     width: 65%;
@@ -188,3 +122,80 @@
   width: 20%;
   margin-left: 10%;
   }
+  .idcategorias{
+    width: 10%;
+      font-size: 16px;
+    }
+    .nombreCate{
+      width: 10%;
+      font-size: 16px;
+    }
+    .acciones{
+      width: 15%;
+      font-size: 16px;
+    }
+    table {
+      width: 100%;
+    }
+    table tr:nth-child(odd) {
+      background: #fff;
+    }
+    table tr:nth-child(even) {
+      background: lightsteelblue;
+    }
+    .mat-row{
+      height: 6px;
+    }
+    td{
+      height: 6px;
+      min-height: min-content;
+    }
+    
+    @media (max-width: 1150px){
+      .idcategorias{
+        width: 12%;
+      }
+      .nombreCate{
+        width: 10%;
+      }
+      .acciones{
+        width: 40%;
+      }
+    }
+    .mat-button{
+      height: 6px;
+      padding: 0;
+    }
+    
+    .mat-button:hover{
+      background: red;
+    }
+    
+    .botones{
+      margin: 0 auto;
+      z-index: -1;
+    }
+    .botones-finales{
+      display: flex;
+      flex-direction: row;
+      margin-left: 20%;
+    }
+    .mat-icon{
+      line-height: 0.6rem;
+    }
+    td, th {
+      width: 10%;
+    }
+    
+    th{
+      background-color: lightsteelblue;
+      font-weight: bold;
+      font-size: 14px;
+      color: black;
+    }
+
+
+
+
+
+    
