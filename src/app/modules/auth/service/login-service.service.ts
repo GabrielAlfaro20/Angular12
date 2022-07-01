@@ -16,7 +16,7 @@ export class LoginServiceService {
   constructor(private http: HttpClient,
     private jwtHelperService:JwtHelperService) { }
    listarUsuarios(): Observable<UsuariosList[]> {
-    return this.http.get<UsuariosList[]>(baseUrl + "listarUsuarios/");
+    return this.http.get<UsuariosList[]>(baseUrl + "listarUsuarios");
   }
   /*
   registarUsuario(usuarios: Usuarios): Observable<Usuarios[]> {
