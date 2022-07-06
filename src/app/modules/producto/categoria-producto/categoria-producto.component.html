@@ -30,15 +30,15 @@
               <td mat-cell *matCellDef="let row" class="botones">
                 <button
                   style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;vertical-align: text-top;">
-                  <mat-icon style="color: black;margin-top: 20%;">edit</mat-icon>
+                  <mat-icon  style="color: black;margin-top: 20%;">edit</mat-icon>
                 </button>
                 <button class="consultar"
                   style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
                   <mat-icon style="color: #3f51b5;margin-top: 20%;">visibility</mat-icon>
                 </button>
-                <button
+                <button 
                   style="height: 25px;position: static;color: red;border: none;background: transparent;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
-                  <mat-icon style="margin-top: 20%">delete</mat-icon>
+                  <mat-icon (click)="eliminarCategoria(row)" style="margin-top: 20%">delete</mat-icon>
                 </button>
               </td>
             </ng-container>
@@ -56,7 +56,7 @@
             <div class="campo-secundario">
                 <mat-form-field style="width: 30%;margin-left: 6.5%;">
                   <mat-label>Nombre de Categoría</mat-label >
-                  <input type="text" matInput formControlName="categoria" >
+                  <input type="text" matInput  >
                 </mat-form-field>                   
               </div>
               <div class="campo-botones">

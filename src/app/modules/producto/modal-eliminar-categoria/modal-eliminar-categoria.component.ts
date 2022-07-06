@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { switchMap } from 'rxjs/operators';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from '../services/categoria.service';
 
@@ -9,25 +10,34 @@ import { CategoriaService } from '../services/categoria.service';
   styleUrls: ['./modal-eliminar-categoria.component.css']
 })
 export class ModalEliminarCategoriaComponent implements OnInit {
-  datosNuevos!: Categoria;
+  
   flagTab!:number;
   flagString!:string;
   mensajeEliminado!:string;
 
   constructor(private dialogRef: MatDialogRef<ModalEliminarCategoriaComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: Categoria,
+    @Inject(MAT_DIALOG_DATA) private data:any,
     private serviceCategorias: CategoriaService) { }
-
+  eliminar:any;
   ngOnInit(): void {
+    this.eliminar={...this.data}
+    console.log(this.data.nombreCate);
+    console.log(this.data.idcategorias);
+    
+    
+    
+  }
+  cerrar() {
+    this.dialogRef.close();
+  }
+  operar(){
+    this.serviceCategorias.eliminarCategoria(this.eliminar.idcategorias).pipe(switchMap(()=>{
+      return this.serviceCategorias.listarCategoria()
+    })).subscribe(data =>{
+      this.serviceCategorias.setMensajeCambio("Categoria eliminado correctamente")
+      this.serviceCategorias.settabNumCambio(data)
+    })
 
-    switch (this.flagTab) {
-      case 0:
-        this.flagString = "SUB";
-        this.mensajeEliminado = "Se elimino el categoria";
-        break;
-        default:
-        break;
-    }
   }
 
 

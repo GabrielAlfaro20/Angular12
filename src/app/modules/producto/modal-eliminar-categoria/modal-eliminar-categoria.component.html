@@ -3,10 +3,12 @@
         Eliminar
     </div>
     <div class="card-body">
-        
-         
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>¿Deseas eliminar la siguiente categoria "{{eliminar.idcategorias}} - {{eliminar.nombreCate}}"?</p>
+        <div class="dos">
+            <button (click)="operar()" type="button" class=" btn btn-success" ><i class="fas fa-check"></i></button>
+            <button (click)="cerrar()" type="button" class=" btn btn-danger" ><i class="fas fa-times"></i></button>
+        </div>
 
-           
-        
     </div>
 </div>
