@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ModalEliminarCategoriaComponent } from '../modal-eliminar-categoria/modal-eliminar-categoria.component';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from '../services/categoria.service';
 
@@ -12,13 +14,13 @@ import { CategoriaService } from '../services/categoria.service';
   styleUrls: ['./categoria-producto.component.css']
 })
 export class CategoriaProductoComponent implements OnInit {
-  listcat? : Categoria[];
+  listcat : Categoria[];
   displayedColumns : string []=['idcategorias','nombreCate','acciones'];
   dataSource!: MatTableDataSource<Categoria>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router, private listarCat: CategoriaService)  { }
+  constructor(private router: Router, private listarCat: CategoriaService, private dialog: MatDialog)  { }
 
   ngOnInit(): void {
     this.listarCategoria();
@@ -29,8 +31,7 @@ export class CategoriaProductoComponent implements OnInit {
       console.log(data);   
     })
   }
-  consultar(){
-  }
+  
   crearTabla(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
@@ -50,4 +51,28 @@ export class CategoriaProductoComponent implements OnInit {
       this.crearTabla(data);
     });
 }
+
+eliminarCategoria(categoria:Categoria){
+  console.log("hola mundo");
+  
+  this.dialog.open(ModalEliminarCategoriaComponent , {
+    width: '500px',
+    height: '250px',
+    data: {
+      ...categoria
+    }
+  });
+
+
+}
+/* consultar(any:[]){
+  console.log("hola mundo");
+  
+  this.dialog.open(ModalEliminarCategoriaComponent , {
+    width: '720px',
+    height: '670px',
+  });
+} */
+
+
 }

@@ -67,7 +67,6 @@ export class LoginComponent implements OnInit {
     this.usuario()
     this.clave()
     console.log(this.form.get('txtPassword')?.value, this.form.getRawValue().txtUsuario );
-
     // this.login.listarUsuarios().subscribe(data => {
     //   let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
     //   if (usuarioExiste != undefined) {
@@ -87,12 +86,13 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('token', resp.token)
               this.router.navigate(['/home'])
             })
-          }
-      //   }
-      //   else {
-      //     this.usuarioNo = true
-      //   }
-      // }
+
+  //         }
+  //       }
+  //       else {
+  //         this.usuarioNo = true
+  //       }
+  //     }
   //     else if (usuarioExiste == undefined) {
   //       if (this.form.get('txtUsuario')?.value == '') {
   //         this.usuarioNo = false
@@ -116,4 +116,5 @@ export class LoginComponent implements OnInit {
   //     }
   //   })
   // }
+}
 }

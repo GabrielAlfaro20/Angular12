@@ -10,13 +10,11 @@ const baseUrl = environment.HOST + '/categoria/'
 })
 export class CategoriaService {
   private mensajeCambio = new Subject<string>();
+  private tabNumCambio = new Subject<Categoria[]>();
 
   constructor(
     private http:HttpClient
-  )
-  
-  {
-   }
+  ){}
 
    setMensajeCambio(mensaje: string) {
     this.mensajeCambio.next(mensaje);
@@ -26,12 +24,21 @@ export class CategoriaService {
     return this.mensajeCambio.asObservable();
   }
 
+  
+  settabNumCambio(lista: Categoria[]) {
+    this.tabNumCambio.next(lista);
+  }
+
+  gettabNumCambio() {
+    return this.tabNumCambio.asObservable();
+  }
+
    listarCategoria(): Observable<Categoria[]> {
     return this.http.get<Categoria[]> (baseUrl+"listar");
    }
 
    eliminarCategoria(parametro:string){
-    return this.http.delete(baseUrl+"/eliminar/"+parametro);
+    return this.http.delete(baseUrl+"eliminar/"+parametro);
   }
 
 

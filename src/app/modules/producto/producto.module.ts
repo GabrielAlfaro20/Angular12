@@ -7,6 +7,8 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CategoriaProductoComponent } from './categoria-producto/categoria-producto.component';
 import { MantenimientoProductoComponent } from './mantenimiento-producto/mantenimiento-producto.component';
 import { ModalEliminarCategoriaComponent } from './modal-eliminar-categoria/modal-eliminar-categoria.component';
+import { CategoriaEditarComponent } from './categoria-producto/categoria-editar/categoria-editar.component';
+import { ProductoEditarComponent } from './mantenimiento-producto/producto-editar/producto-editar.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,8 @@ const routes: Routes = [
     ProductoComponent,
     CategoriaProductoComponent,
     MantenimientoProductoComponent,
-    ModalEliminarCategoriaComponent,],
+    ModalEliminarCategoriaComponent,
+    CategoriaEditarComponent,
+    ProductoEditarComponent,],
 })
 export class ProductoModule { }
