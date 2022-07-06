@@ -15,9 +15,13 @@ export class RolesGuardsGuard implements CanActivate {
   }
   canActivate(route :ActivatedRouteSnapshot):boolean {
     const expectedRole = route.data.expectedRole;
+    console.log(expectedRole);
+
     const token:any = localStorage.getItem('token')
 
-    // const {correo,idrol}=decode(token);
+    const idrol=decode(token);
+    console.log(idrol);
+
     // console.log(decode(token));
     // if(!this.loginServiceService.isAuth()|| idrol !== expectedRole){
     //   console.log("Usuario no Autorizado");
