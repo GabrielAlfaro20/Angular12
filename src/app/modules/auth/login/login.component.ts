@@ -66,12 +66,12 @@ export class LoginComponent implements OnInit {
   ingresar() {
     this.usuario()
     this.clave()
-    this.login.listarUsuarios().subscribe(data => {
-      let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
-      if (usuarioExiste != undefined) {
-        if (usuarioExiste.clave == this.form.get('txtPassword')?.value) {
-          if (usuarioExiste.roles?.rol == 'ROLE_ADMIN') {
-            this.usuarioNo = false
+    // this.login.listarUsuarios().subscribe(data => {
+    //   let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
+    //   if (usuarioExiste != undefined) {
+    //     if (usuarioExiste.clave == this.form.get('txtPassword')?.value) {
+    //       if (usuarioExiste.roles?.rol == 'ROLE_ADMIN') {
+    //         this.usuarioNo = false
             let login: Login = {
               correo: this.form.getRawValue().txtUsuario,
               clave: this.form.getRawValue().txtPassword
@@ -83,33 +83,34 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('token', resp.token)
               this.router.navigate(['/home'])
             })
-          }
-        }
-        else {
-          this.usuarioNo = true
-        }
-      }
-      else if (usuarioExiste == undefined) {
-        if (this.form.get('txtUsuario')?.value == '') {
-          this.usuarioNo = false
-          this.validarUsuario = true
-        }
-        else {
-          this.usuarioNo = true
-          this.validarUsuario = false
-        }
-        if (this.form.get('txtPassword')?.value == '') {
-          this.usuarioNo = false
-          this.validarClave = true
-        }
-        else {
-          this.usuarioNo = true
-          this.validarClave = false
-        }
-      }
-      else {
-        console.log("Super Error");
-      }
-    })
-  }
+  //         }
+  //       }
+  //       else {
+  //         this.usuarioNo = true
+  //       }
+  //     }
+  //     else if (usuarioExiste == undefined) {
+  //       if (this.form.get('txtUsuario')?.value == '') {
+  //         this.usuarioNo = false
+  //         this.validarUsuario = true
+  //       }
+  //       else {
+  //         this.usuarioNo = true
+  //         this.validarUsuario = false
+  //       }
+  //       if (this.form.get('txtPassword')?.value == '') {
+  //         this.usuarioNo = false
+  //         this.validarClave = true
+  //       }
+  //       else {
+  //         this.usuarioNo = true
+  //         this.validarClave = false
+  //       }
+  //     }
+  //     else {
+  //       console.log("Super Error");
+  //     }
+  //   })
+  // }
+}
 }
