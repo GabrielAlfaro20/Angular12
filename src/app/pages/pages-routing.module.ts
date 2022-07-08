@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './_layout/layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 //los menus del drawer
 const routes: Routes = [
   {
@@ -13,6 +14,8 @@ const routes: Routes = [
         redirectTo: 'home',
         pathMatch: 'full'
       },
+      { path: '**', redirectTo: 'home', pathMatch: 'full' },
+
       {
         path: 'home',
         loadChildren: () =>
