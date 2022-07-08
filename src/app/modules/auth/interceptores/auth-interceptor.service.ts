@@ -1,45 +1,66 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
-import {catchError} from "rxjs/operators";
-
+import { catchError } from "rxjs/operators";
+import { LoginServiceService } from '../service/login-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthInterceptorService implements HttpInterceptor{
+export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: CookieService,
+    private login: LoginServiceService,
+    private router: Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // throw new Error('Method not implemented.');
-    const token =localStorage.getItem('token');
-    // let request = req;
+    // comentada 4
+    const token = this.login.getToken();
     if (!token) {
       return next.handle(req);
     }
-const headers = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`)
-    });
-    return next.handle(headers).pipe(
-      catchError((err: HttpErrorResponse) => {
+    this.addToken(req, token);
+    return next.handle(req).pipe(
+      catchError(
+        (err: HttpErrorResponse) => {
+          console.log(err.status);
+          if (err.status === 401) {
+            this.login.clear()
+            this.router.navigate(['/auth/login'])
+            console.log("401");
 
-        if (err.status === 401) {
-          // this.router.navigateByUrl('/login');
-          console.log('login');
+            return throwError("Error 401");
 
+          } else if (err.status === 403) {
+            console.log("403");
+          }
+          return throwError("Error vuelve a intentarlo");
         }
-
-        return throwError(err);
-
-      })
+      )
     );
+    /*     const headers = req.clone({
+              headers: req.headers.set('Authorization', `Bearer ${token}`)
+            });
+            return next.handle(headers).pipe(
+              catchError((err: HttpErrorResponse) => {
+
+                if (err.status === 401) {
+                  console.log('401');
+                }
+                else if(err.status === 403){
+                  console.log("403");
+
+                }
+
+                return throwError(err.status +' '+ 'que llegara');
+
+              })
+            );*/
   }
 
-  // herrorHandler(error:HttpErrorResponse):Observable<never>{
-  //   if(error instanceof HttpErrorResponse){
-  //     if(error.error instanceof ErrorEvent){
-  //       console.log('ERROR DE CLIENTE');
-  //     }
-  //   }
-  // }
+  private addToken(req: HttpRequest<any>, token: string) {
+    const headers = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`)
+    });
+  }
 }

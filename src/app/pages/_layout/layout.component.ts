@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginServiceService } from 'src/app/modules/auth/service/login-service.service';
 
 @Component({
   selector: 'app-layout',
@@ -21,7 +23,11 @@ export class LayoutComponent implements OnInit {
   showCompras:boolean=false
   showReportes:boolean=false
 
-  constructor() { }
+  constructor(
+    private login:LoginServiceService,
+    private router:Router,
+
+  ) { }
 
   ngOnInit(): void {
   }
@@ -42,5 +48,12 @@ export class LayoutComponent implements OnInit {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  }
+  //segundo agregado
+  cerrarSecion(){
+    this.login.clear();
+    this.router.navigate(['/auth/login'])
+    console.log("cerrando seccion");
+
   }
 }

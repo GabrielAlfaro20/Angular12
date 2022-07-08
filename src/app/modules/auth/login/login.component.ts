@@ -26,6 +26,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario();
+    if(this.login.verificacionLogout()){
+      this.router.navigate(['home'])
+    }
+    else{
+
+    }
   }
   formulario() {
     this.form = this.Builder.group({
@@ -64,53 +70,56 @@ export class LoginComponent implements OnInit {
     }
   }
   ingresar() {
-    this.usuario()
+    let login: Login = {
+      correo: this.form.getRawValue().txtUsuario,
+      clave: this.form.getRawValue().txtPassword
+    }
+
+    this.login.crearToken(login).subscribe(
+      (resp: any) => {
+ /*      console.log(resp) */
+      this.login.setToken(resp.token)
+      //  this.cookieService.set('token',data.token.);
+      //  this.authInterceptorService.
+      this.router.navigate(['/home'])
+    })
+      /*       localStorage.setItem('token', resp.token)
+   /*  this.usuario()
     this.clave()
-    // this.login.listarUsuarios().subscribe(data => {
-    //   let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
-    //   if (usuarioExiste != undefined) {
-    //     if (usuarioExiste.clave == this.form.get('txtPassword')?.value) {
-    //       if (usuarioExiste.roles?.rol == 'ROLE_ADMIN') {
-    //         this.usuarioNo = false
-            let login: Login = {
-              correo: this.form.getRawValue().txtUsuario,
-              clave: this.form.getRawValue().txtPassword
-            }
-            this.login.crearToken(login).subscribe((resp: any) => {
-              console.log(resp)
-              //  this.cookieService.set('token',data.token.);
-              //  this.authInterceptorService.
-              localStorage.setItem('token', resp.token)
-              this.router.navigate(['/home'])
-            })
-  //         }
-  //       }
-  //       else {
-  //         this.usuarioNo = true
-  //       }
-  //     }
-  //     else if (usuarioExiste == undefined) {
-  //       if (this.form.get('txtUsuario')?.value == '') {
-  //         this.usuarioNo = false
-  //         this.validarUsuario = true
-  //       }
-  //       else {
-  //         this.usuarioNo = true
-  //         this.validarUsuario = false
-  //       }
-  //       if (this.form.get('txtPassword')?.value == '') {
-  //         this.usuarioNo = false
-  //         this.validarClave = true
-  //       }
-  //       else {
-  //         this.usuarioNo = true
-  //         this.validarClave = false
-  //       }
-  //     }
-  //     else {
-  //       console.log("Super Error");
-  //     }
-  //   })
-  // }
-}
+    this.login.listarUsuarios().subscribe(data => {
+      let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
+      if (usuarioExiste != undefined) {
+        if (usuarioExiste.clave == this.form.get('txtPassword')?.value) {
+          if (usuarioExiste.roles?.rol == 'ROLE_ADMIN') {
+            this.usuarioNo = false
+
+          }
+        }
+        else {
+          this.usuarioNo = true
+        }
+      }
+      else if (usuarioExiste == undefined) {
+        if (this.form.get('txtUsuario')?.value == '') {
+          this.usuarioNo = false
+          this.validarUsuario = true
+        }
+        else {
+          this.usuarioNo = true
+          this.validarUsuario = false
+        }
+        if (this.form.get('txtPassword')?.value == '') {
+          this.usuarioNo = false
+          this.validarClave = true
+        }
+        else {
+          this.usuarioNo = true
+          this.validarClave = false
+        }
+      }
+      else {
+        console.log("Super Error");
+      }
+    }) */
+  }
 }
