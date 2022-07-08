@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,11 +21,19 @@ export class CategoriaProductoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router, private listarCat: CategoriaService, private dialog: MatDialog)  { }
+   
+   submittedCategoriaProducto:boolean = false;
+   public formCagoriaProducto:FormGroup;
+  constructor(private router: Router, private listarCat: CategoriaService, private dialog: MatDialog,
+     private formBuilder: FormBuilder,)  { }
 
   ngOnInit(): void {
     this.listarCategoria();
     this.cargarCuentas()
+    this.formCagoriaProducto = this.formBuilder.group({
+      idcategorias:['', Validators.required],
+      nombreCate:['']
+    })
   }
   listarCategoria(){
     this.listarCat.listarCategoria().subscribe(data =>{
@@ -73,6 +82,12 @@ eliminarCategoria(categoria:Categoria){
     height: '670px',
   });
 } */
+registrarCategoria(flag:string, formulario:FormGroup){
+  
+}
+operar(){
+  this.registrarCategoria("",this.formCagoriaProducto);
 
+}
 
 }

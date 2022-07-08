@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Proveedor } from '../model/proveedor';
 import { ProveedorService } from '../service/proveedor.service';
+import { ModalEliminarProveedorComponent } from './modal-eliminar-proveedor/modal-eliminar-proveedor.component';
 
 @Component({
   selector: 'app-confi-provedores',
@@ -19,7 +21,7 @@ export class ConfiProvedoresComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private router: Router,private listarProveedor: ProveedorService) { }
+  constructor(private router: Router,private listarProveedor: ProveedorService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.listarProveedores();
@@ -55,5 +57,17 @@ export class ConfiProvedoresComponent implements OnInit {
     
   })
  }
+ eliminarProveedor(proveedor:Proveedor){
+  console.log("hola mundo");
+  this.dialog.open(ModalEliminarProveedorComponent, {
+    width: '500px',
+    height: '250px',
+    data: {
+      ...proveedor
+    }
+  });
+
+
+}
 
 }
