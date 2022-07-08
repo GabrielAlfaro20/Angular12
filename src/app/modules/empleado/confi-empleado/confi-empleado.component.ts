@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Empleado } from '../model/empleadoModel';
 import { EmpleadoService } from '../service/empleado.service';
+import { ModalEliminarEmpleadoComponent } from './modal-eliminar-empleado/modal-eliminar-empleado.component';
 
 @Component({
   selector: 'app-confi-empleado',
@@ -17,7 +19,7 @@ export class ConfiEmpleadoComponent implements OnInit {
   dataSource!: MatTableDataSource<Empleado>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private router: Router, private listarDeEmpleados: EmpleadoService) { }
+  constructor(private router: Router, private listarDeEmpleados: EmpleadoService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.listarEmleados();
@@ -49,5 +51,16 @@ export class ConfiEmpleadoComponent implements OnInit {
     this.crearTabla(data);
   })
  }
+ eliminarEmpleado(empleado:Empleado){
+  this.dialog.open(ModalEliminarEmpleadoComponent , {
+    width: '500px',
+    height: '250px',
+    data: {
+      ...empleado
+    }
+  });
+
+
+}
 
 }

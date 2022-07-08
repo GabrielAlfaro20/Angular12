@@ -9,6 +9,7 @@ import { MantenimientoProductoComponent } from './mantenimiento-producto/manteni
 import { ModalEliminarCategoriaComponent } from './modal-eliminar-categoria/modal-eliminar-categoria.component';
 import { CategoriaEditarComponent } from './categoria-producto/categoria-editar/categoria-editar.component';
 import { ProductoEditarComponent } from './mantenimiento-producto/producto-editar/producto-editar.component';
+import { ModalEliminarProductoComponent } from './mantenimiento-producto/modal-eliminar-producto/modal-eliminar-producto.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
     MantenimientoProductoComponent,
     ModalEliminarCategoriaComponent,
     CategoriaEditarComponent,
-    ProductoEditarComponent,],
+    ProductoEditarComponent,
+    ModalEliminarProductoComponent,],
 })
 export class ProductoModule { }
