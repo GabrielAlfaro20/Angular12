@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
     this.formulario();
     if(this.login.verificacionLogout()){
       this.router.navigate(['home'])
-    }
-    else{
+      console.log("que llega");
 
     }
   }
