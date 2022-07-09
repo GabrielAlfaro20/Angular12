@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -25,13 +26,24 @@ export class CategoriaProductoComponent implements OnInit {
    submittedCategoriaProducto:boolean = false;
    public formCagoriaProducto:FormGroup;
   constructor(private router: Router, private listarCat: CategoriaService, private dialog: MatDialog,
-     private formBuilder: FormBuilder,)  { }
+     private formBuilder: FormBuilder,private snackBar: MatSnackBar)  { }
 
   ngOnInit(): void {
     this.listarCategoria();
     this.cargarCuentas()
+    this.formulario()
+    
+    this.listarCat.gettabNumCambio().subscribe(data => {
+      this.crearTabla(data);
+
+    })
+    this.listarCat.getMensajeCambio().subscribe(data => {
+      this.snackBar.open(data, 'AVISO', { duration: 2000 });
+    });
+    
+  }
+  formulario(){
     this.formCagoriaProducto = this.formBuilder.group({
-      idcategorias:['', Validators.required],
       nombreCate:['']
     })
   }
@@ -68,26 +80,73 @@ eliminarCategoria(categoria:Categoria){
     width: '500px',
     height: '250px',
     data: {
-      ...categoria
+      ...categoria,
+      principal: categoria
     }
   });
 
 
 }
-/* consultar(any:[]){
-  console.log("hola mundo");
-  
-  this.dialog.open(ModalEliminarCategoriaComponent , {
-    width: '720px',
-    height: '670px',
-  });
-} */
+get f() {
+  return this.formCagoriaProducto.controls;
+}
+invalido: boolean=false
+escribirData(){
+  if(this.formCagoriaProducto.get('nombreCate').value.length>=1){
+    this.listarCat.listarCategoria().subscribe(data =>{
+      let repite=data.find(element =>element.nombreCate==this.formCagoriaProducto.get('nombreCate').value)
+      if(repite !=undefined){
+        this.invalido=true
+        this.formCagoriaProducto.get('nombreCate').setValidators([Validators.required ])
+        this.formCagoriaProducto.get('nombreCate').updateValueAndValidity()
+      }else{
+
+        this.invalido=false
+        this.formCagoriaProducto.get('nombreCate').clearValidators()
+        this.formCagoriaProducto.get('nombreCate').updateValueAndValidity()
+        
+      }
+      
+      
+    })
+}else{
+  this.invalido=false
+}
+}
+
 registrarCategoria(flag:string, formulario:FormGroup){
   
 }
+cateGuardar : Categoria
 operar(){
-  this.registrarCategoria("",this.formCagoriaProducto);
+  if(this.invalido==true){
+    this.escribirData()
+  }
+  if(this.formCagoriaProducto.invalid || this.invalido==true){
+    this.listarCat.setMensajeCambio('Datos incorrectos')
 
+  }else{
+  this.cateGuardar={
+    nombreCate:this.formCagoriaProducto.value.nombreCate
+  };
+  console.log(this.cateGuardar);
+  this.listarCat.registrarCategoria(this.cateGuardar).subscribe(data =>{
+    if(data['Mensaje']=='Categoría Registrado correctamento'){
+
+      this.listarCat.setMensajeCambio('Categoría Registrado correctamento')
+      this.formCagoriaProducto.get('nombreCate').setValue('')
+      this.listarCat.listarCategoria().subscribe(data =>{
+        this.listarCat.settabNumCambio(data)
+        this.crearTabla(data);
+      });
+      
+    }else{
+      this.listarCat.setMensajeCambio('Error: Ya existe categoria')
+
+    }
+    
+  })
+}
 }
 
 }

@@ -50,31 +50,18 @@
           </table>
           <mat-paginator [pageSizeOptions]="[5,10,15]" aria-label="Select page of users"></mat-paginator>
         </div>
-
-
+        <form [formGroup]="formCagoriaProducto">
           <div class="caja-registro">
-            <!-- <div class="campo-secundario">
-                <mat-form-field style="width: 30%;margin-left: 6.5%;">
-                  <mat-label>Nombre de Categoría</mat-label >
-                  <input type="text" matInput  >
-                </mat-form-field>                   
-              </div> -->
               <div class="campo-secundario">
-                <mat-form-field style="width: 57.5%;margin-left: 6.5%;">
+                <mat-form-field style="width: 40%;margin-left: 6.5%;">
                   <mat-label>Categoria de producto</mat-label >
-                  <input type="text" matInput formControlName="nombreCate" >
+                  <input type="text" matInput formControlName="nombreCate" (keyup)="escribirData()" >
                 </mat-form-field>                   
-                <div *ngIf="submittedCategoriaProducto && this.formCagoriaProducto.controls.nombreCate.errors" class="alert alert-danger" style="width: 57.5%;margin-left: 6.5%;">
-                  <div class="texto-valida" *ngIf="formCagoriaProducto.controls.nombreCate.errors.required">
-                    <i class="fas fa-exclamation-triangle" style="color: red;">
-                      <span style="color: red; font-size: 12px;"> Nombre de categoria requerido </span>
-                    </i>
-                  </div>
-                </div>
+                <p *ngIf="invalido && f.nombreCate " style="color: red;"> La categoria ya existe!</p>
               </div>
               <div class="campo-botones">
                 <div class="dos" >
-                  <button   class=" btn btn-success" (click)="operar()" id="boton-add" [disabled]="!this.formCagoriaProducto.controls.idcategorias.enabled">
+                  <button   class=" btn btn-success" (click)="operar()" id="boton-add">
                    Registrar Categoría
                   </button>
                   <button mat-fab style="margin-left: 45%;padding-top: 12px; background-color: dodgerblue;"
@@ -84,5 +71,6 @@
                 </div>
               </div>
           </div>
+        </form>
     </div>
     <button type="button" class=" btn btn-danger" id="boton-regresar" routerLink="/home"><i class="fas fa-long-arrow-alt-left"></i></button>

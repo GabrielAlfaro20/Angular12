@@ -20,7 +20,7 @@ export class ModalEliminarCategoriaComponent implements OnInit {
     private serviceCategorias: CategoriaService) { }
   eliminar:any;
   ngOnInit(): void {
-    this.eliminar={...this.data}
+    this.eliminar={...this.data['principal']}
     console.log(this.data.nombreCate);
     console.log(this.data.idcategorias);
     
@@ -36,6 +36,8 @@ export class ModalEliminarCategoriaComponent implements OnInit {
     })).subscribe(data =>{
       this.serviceCategorias.setMensajeCambio("Categoria eliminado correctamente")
       this.serviceCategorias.settabNumCambio(data)
+
+      
     })
 
   }

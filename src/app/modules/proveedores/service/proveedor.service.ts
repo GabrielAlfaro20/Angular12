@@ -41,4 +41,8 @@ export class ProveedorService {
   eliminarProveedor(parametro:string){
     return this.http.delete(baseUrl+"eliminarEmpleado/"+parametro);
   }
+  registrarProveedor(parametro: Proveedor):Observable<Proveedor[]>{
+    return this.http.post<Proveedor[]>(baseUrl+"agregarProveedor/",parametro);
+
+  }
 }

@@ -67,18 +67,39 @@
           </table>
           <mat-paginator [pageSizeOptions]="[5,10,15]" aria-label="Select page of users"></mat-paginator>
         </div>
-
-
+        <form [formGroup]="formProveedor">
           <div class="caja-registro">
             <div class="campo-secundario">
-                <mat-form-field style="width: 30%;margin-left: 6.5%;">
-                  <mat-label>Nombre de Categoría</mat-label >
-                  <input type="text" matInput formControlName="categoria" >
-                </mat-form-field>                   
+                <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                  <mat-label>Nombre de Empresa</mat-label >
+                  <input type="text" matInput formControlName="nombreEmpresa" (keyup)="escribirData()">
+                </mat-form-field>
+                <p *ngIf="invalido && f.nombreEmpresa " style="color: red;"> El nombre ya existe!</p>                  
+              </div>
+              <div class="campo-secundario">
+                <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                  <mat-label>Correo electrónico</mat-label >
+                  <input type="text" matInput formControlName="correo" (keyup)="escribirData1()" >
+                </mat-form-field> 
+                <p *ngIf="invalido && f.correo " style="color: red;"> El correo electrónico ya existe!</p>                  
+              </div>
+              <div class="campo-secundario">
+                <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                  <mat-label>Teléfono</mat-label >
+                  <input type="text" matInput formControlName="telefono" (keyup)="escribirData()">
+                </mat-form-field>
+                <p *ngIf="invalido && f.telefono " style="color: red;"> El teléfono ya existe!</p>                 
+              </div>
+              <div class="campo-secundario">
+                <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                  <mat-label>Dirección</mat-label >
+                  <input type="text" matInput formControlName="direccion" (keyup)="escribirData()" >
+                </mat-form-field>
+                <p *ngIf="invalido && f.direccion " style="color: red;"> La dirección ya existe!</p>                  
               </div>
               <div class="campo-botones">
                 <div class="dos" >
-                  <button   class=" btn btn-success" id="boton-add">
+                  <button   class=" btn btn-success" (click)="operar()" id="boton-add">
                    Registrar Proveedor
                   </button>
                   <button mat-fab style="margin-left: 45%;padding-top: 12px; background-color: dodgerblue;"
@@ -88,5 +109,6 @@
                 </div>
               </div>
           </div>
+        </form>
     </div>
     <button type="button" class=" btn btn-danger" id="boton-regresar" routerLink="/home"><i class="fas fa-long-arrow-alt-left"></i></button>
