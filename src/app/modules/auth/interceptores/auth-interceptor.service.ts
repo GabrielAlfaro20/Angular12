@@ -19,12 +19,17 @@ export class AuthInterceptorService implements HttpInterceptor {
     if (!token) {
       return next.handle(req);
     }
-    this.addToken(req, token);
-    return next.handle(req).pipe(
+    /*     this.addToken(req, token);*/
+    const headers = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${token}`)
+    });
+    return next.handle(headers).pipe(
       catchError(
         (err: HttpErrorResponse) => {
           console.log(err.status);
           if (err.status === 401) {
+            console.log("holasdsd");
+
             this.login.clear()
             this.router.navigate(['/auth/login'])
             console.log("401");
@@ -58,9 +63,9 @@ export class AuthInterceptorService implements HttpInterceptor {
             );*/
   }
 
-  private addToken(req: HttpRequest<any>, token: string) {
-    const headers = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`)
-    });
-  }
+  /*   private addToken(req: HttpRequest<any>, token: string) {
+      const headers = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${token}`)
+      });
+    } */
 }

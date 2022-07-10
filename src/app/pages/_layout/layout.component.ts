@@ -30,6 +30,15 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+//hola
+    window.addEventListener('storage', (event) =>{
+      if (event.storageArea == localStorage) {
+        let token = this.login.getToken();
+        if(token == undefined){
+          this.router.navigate(['/auth/login'])
+        }
+      }
+    })
   }
 
   getSidenav(): boolean {
