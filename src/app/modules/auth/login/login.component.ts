@@ -26,10 +26,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario();
-    if(this.login.verificacionLogout()){
+    if (this.login.verificacionLogout()) {
       this.router.navigate(['home'])
       console.log("que llega");
-
     }
   }
   formulario() {
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
   usuario() {
     if (this.form.get('txtUsuario')?.value.length >= 1) {
       this.validarUsuario = false
-
     }
     else {
       this.validarUsuario = true
@@ -60,7 +58,6 @@ export class LoginComponent implements OnInit {
   clave() {
     if (this.form.get('txtPassword')?.value.length >= 1) {
       this.validarClave = false
-
     }
     else {
       this.validarClave = true
@@ -73,52 +70,65 @@ export class LoginComponent implements OnInit {
       correo: this.form.getRawValue().txtUsuario,
       clave: this.form.getRawValue().txtPassword
     }
+    if (this.form.valid) {
+      this.login.crearToken(login).subscribe(
+        (resp: any) => {
+          /*      console.log(resp) */
+          this.login.setToken(resp.token)
+          //  this.cookieService.set('token',data.token.);
+          //  this.authInterceptorService.
+          this.router.navigate(['/home'])
+        },(error) => {
+            this.usuarioNo=true
+            console.log("usuaario o clave incorrecto");
 
-    this.login.crearToken(login).subscribe(
-      (resp: any) => {
- /*      console.log(resp) */
-      this.login.setToken(resp.token)
-      //  this.cookieService.set('token',data.token.);
-      //  this.authInterceptorService.
-      this.router.navigate(['/home'])
-    })
-      /*       localStorage.setItem('token', resp.token)
-   /*  this.usuario()
-    this.clave()
-    this.login.listarUsuarios().subscribe(data => {
-      let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
-      if (usuarioExiste != undefined) {
-        if (usuarioExiste.clave == this.form.get('txtPassword')?.value) {
-          if (usuarioExiste.roles?.rol == 'ROLE_ADMIN') {
-            this.usuarioNo = false
-
-          }
-        }
-        else {
-          this.usuarioNo = true
-        }
+        })
+    }
+    else{
+      if(login.correo == ''){
+        this.validarUsuario=true
       }
-      else if (usuarioExiste == undefined) {
-        if (this.form.get('txtUsuario')?.value == '') {
+      if(login.clave == ''){
+          this.validarClave=true
+      }
+    }
+    /*       localStorage.setItem('token', resp.token)
+ /*  this.usuario()
+  this.clave()
+  this.login.listarUsuarios().subscribe(data => {
+    let usuarioExiste = data.find(element => element.correo == this.form.get('txtUsuario')?.value)
+    if (usuarioExiste != undefined) {
+      if (usuarioExiste.clave == this.form.get('txtPassword')?.value) {
+        if (usuarioExiste.roles?.rol == 'ROLE_ADMIN') {
           this.usuarioNo = false
-          this.validarUsuario = true
-        }
-        else {
-          this.usuarioNo = true
-          this.validarUsuario = false
-        }
-        if (this.form.get('txtPassword')?.value == '') {
-          this.usuarioNo = false
-          this.validarClave = true
-        }
-        else {
-          this.usuarioNo = true
-          this.validarClave = false
+
         }
       }
       else {
-        console.log("Super Error");
+        this.usuarioNo = true
       }
-    }) */
+    }
+    else if (usuarioExiste == undefined) {
+      if (this.form.get('txtUsuario')?.value == '') {
+        this.usuarioNo = false
+        this.validarUsuario = true
+      }
+      else {
+        this.usuarioNo = true
+        this.validarUsuario = false
+      }
+      if (this.form.get('txtPassword')?.value == '') {
+        this.usuarioNo = false
+        this.validarClave = true
+      }
+      else {
+        this.usuarioNo = true
+        this.validarClave = false
+      }
+    }
+    else {
+      console.log("Super Error");
+    }
+  }) */
   }
 }
