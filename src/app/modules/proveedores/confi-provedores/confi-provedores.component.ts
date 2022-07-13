@@ -17,22 +17,22 @@ import { ModalEliminarProveedorComponent } from './modal-eliminar-proveedor/moda
   styleUrls: ['./confi-provedores.component.css']
 })
 export class ConfiProvedoresComponent implements OnInit {
-  listprove? : Proveedor[];
-  displayedColumns : string[]=['idProveedor','nombreEmpresa','correo','telefono','direccion','acciones'];
+  listprove?: Proveedor[];
+  displayedColumns: string[] = ['idProveedor', 'nombreEmpresa', 'correo', 'telefono', 'direccion', 'acciones'];
   dataSource!: MatTableDataSource<Proveedor>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  public formProveedor:FormGroup;
-  constructor(private router: Router,private listarProveedor: ProveedorService,private dialog: MatDialog,
-    private formBuilder: FormBuilder,private snackBar: MatSnackBar) { }
+  public formProveedor: FormGroup;
+  constructor(private router: Router, private listarProveedor: ProveedorService, private dialog: MatDialog,
+    private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.listarProveedores();
     this.cargardatosProve();
     this.formularioProveedor();
 
-    this.listarProveedor.gettabNumCambio().subscribe(data =>{
+    this.listarProveedor.gettabNumCambio().subscribe(data => {
       this.crearTabla(data);
     })
     this.listarProveedor.getMensajeCambio().subscribe(data => {
@@ -40,22 +40,22 @@ export class ConfiProvedoresComponent implements OnInit {
     });
 
   }
-  formularioProveedor(){
+  formularioProveedor() {
     this.formProveedor = this.formBuilder.group({
-      nombreEmpresa:[''],
-      correo: [''],
-      telefono:[''],
-      direccion:['']
+      nombreEmpresa: ['', Validators.required],
+      correo: ['', Validators.required],
+      telefono: ['', Validators.required],
+      direccion: ['', Validators.required]
     })
   }
 
-  listarProveedores(){
-    this.listarProveedor.listarProveedor().subscribe(data =>{
+  listarProveedores() {
+    this.listarProveedor.listarProveedor().subscribe(data => {
       console.log(data);
-      
+
     })
   }
-  consultar(){
+  consultar() {
   }
   crearTabla(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
@@ -66,153 +66,134 @@ export class ConfiProvedoresComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-     if (this.dataSource.paginator) {
-       this.dataSource.paginator.firstPage();
-     }
- }
-
- cargardatosProve(){
-  this.listarProveedor.listarProveedor().subscribe((data) =>{
-    console.log(data);
-    this.crearTabla(data);
-    
-  })
- }
- eliminarProveedor(proveedor:Proveedor){
-  console.log("hola mundo");
-  this.dialog.open(ModalEliminarProveedorComponent, {
-    width: '500px',
-    height: '250px',
-    data: {
-      ...proveedor
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-  });
-
-
-}
-get f() {
-  return this.formProveedor.controls;
-}
-invalido: boolean=false
-escribirData()/* {
-  if(this.formProveedor.get('nombreEmpresa').value.length>=1 &&
-     this.formProveedor.get('correo').value.length>=1 &&
-     this.formProveedor.get('telefono').value.length>=1 &&
-     this.formProveedor.get('direccion').value.length>=1){
-      this.listarProveedor.listarProveedor().subscribe(data =>{
-        let repite=data.find(element =>element.nombreEmpresa==this.formProveedor.get('nombreEmpresa').value ||
-                                       element.correo==this.formProveedor.get('correo').value ||
-                                       element.telefono==this.formProveedor.get('telefono').value ||
-                                       element.direccion==this.formProveedor.get('direccion').value)
-        if(repite !=undefined){
-          this.invalido=true
-          this.formProveedor.get('nombreEmpresa').setValidators([Validators.required])
-          this.formProveedor.get('nombreEmpresa').updateValueAndValidity()
-          this.formProveedor.get('correo').setValidators([Validators.required])
-          this.formProveedor.get('correo').updateValueAndValidity()
-          this.formProveedor.get('telefono').setValidators([Validators.required])
-          this.formProveedor.get('telefono').updateValueAndValidity()
-          this.formProveedor.get('direccion').setValidators([Validators.required])
-          this.formProveedor.get('direccion').updateValueAndValidity()
-        }else{
-          this.invalido=false
-          this.formProveedor.get('nombreEmpresa').clearValidators()
-          this.formProveedor.get('nombreEmpresa').updateValueAndValidity()
-          this.formProveedor.get('correo').clearValidators()
-          this.formProveedor.get('correo').updateValueAndValidity()
-          this.formProveedor.get('telefono').clearValidators()
-          this.formProveedor.get('telefono').updateValueAndValidity()
-          this.formProveedor.get('direccion').clearValidators()
-          this.formProveedor.get('direccion').updateValueAndValidity()
-        }
-      })
-
-  }else{
-    this.invalido=false
   }
-} */
-{
-  if(this.formProveedor.get('nombreEmpresa').value.length>=1){
-    this.listarProveedor.listarProveedor().subscribe(data =>{
-      let repite=data.find(element =>element.nombreEmpresa==this.formProveedor.get('nombreEmpresa').value)
-      if(repite !=undefined){
-        this.invalido=true
-        this.formProveedor.get('nombreEmpresa').setValidators([Validators.required])
-        this.formProveedor.get('nombreEmpresa').updateValueAndValidity()
 
-      }else{
-        this.invalido=false
-        this.formProveedor.get('nombreEmpresa').clearValidators()
-        this.formProveedor.get('nombreEmpresa').updateValueAndValidity()
-      }
+  cargardatosProve() {
+    this.listarProveedor.listarProveedor().subscribe((data) => {
+      console.log(data);
+      this.crearTabla(data);
+
     })
-  }else{
-    this.invalido=false
   }
-
-
-
-
-}
-escribirData1(){
-  if(this.formProveedor.get('correo').value.length>=1){
-    this.listarProveedor.listarProveedor().subscribe(data =>{
-      let repite=data.find(element =>element.correo==this.formProveedor.get('nombreEmpresa').value)
-      if(repite !=undefined){
-        this.invalido=true
-        this.formProveedor.get('correo').setValidators([Validators.required])
-        this.formProveedor.get('correo').updateValueAndValidity()
-
-      }else{
-        this.invalido=false
-        this.formProveedor.get('correo').clearValidators()
-        this.formProveedor.get('correo').updateValueAndValidity()
+  eliminarProveedor(proveedor: Proveedor) {
+    console.log("hola mundo");
+    this.dialog.open(ModalEliminarProveedorComponent, {
+      width: '500px',
+      height: '250px',
+      data: {
+        ...proveedor
       }
-    })
-  }else{
-    this.invalido=false
+    });
+
+
+  }
+  get f() {
+    return this.formProveedor.controls;
   }
 
-}
+  invalido1: boolean = false
 
 
+  requerido1: boolean = false
+  requerido2: boolean = false
+  requerido3: boolean = false
+  requerido4: boolean = false
 
-proveedorGuardar: Proveedor
-operar(){
-  if(this.invalido==true){
-    this.escribirData()
-    this.escribirData1()
-  }
-  if(this.formProveedor.invalid || this.invalido==true){
-    this.listarProveedor.setMensajeCambio('Datos incorrectos')
+  escribir(param:string){
+    if(param=='nombreEmpresa'){
 
-  }else{
-    this.proveedorGuardar={
-      nombreEmpresa:this.formProveedor.value.nombreEmpresa,
-      correo:this.formProveedor.value.correo,
-      telefono:this.formProveedor.value.telefono,
-      direccion:this.formProveedor.value.direccion
-    };
-    console.log(this.proveedorGuardar);
-    this.listarProveedor.registrarProveedor(this.proveedorGuardar).subscribe(data =>{
-      if(data['Mensaje']=='Proveedor registrado correctamente'){
-        this.listarProveedor.setMensajeCambio('Proveedor registrado correctamente')
-        this.formProveedor.get('nombreEmpresa').setValue('')
-        this.formProveedor.get('correo').setValue('')
-        this.formProveedor.get('telefono').setValue('')
-        this.formProveedor.get('direccion').setValue('')
-
+      if(this.formProveedor.get('nombreEmpresa').value!=''){
         this.listarProveedor.listarProveedor().subscribe(data =>{
-          this.listarProveedor.settabNumCambio(data)
-          this.crearTabla(data);
-        });
-        
-      }else{
-        this.listarProveedor.setMensajeCambio('Error: Ya existe proveedor')
-      }
-    })
-    
-  }
-}
+          let prove = data.find(element =>element.nombreEmpresa==this.formProveedor.get('nombreEmpresa').value)
+          if(prove!=undefined){
+            this.invalido1=true
+            this.requerido1=false
+            console.log("existe");
+            
+          }else{
+            console.log("no existe");
+            this.requerido1=false
+            this.invalido1=false
+          }
+        })
+        this.requerido1=false
 
-}
+
+      }else{
+        this.requerido1=true
+      }
+
+    }
+    else if(param=='correo'){
+      if(this.formProveedor.get('correo').value!=''){
+        this.requerido2=false
+
+      }else{
+        this.requerido2=true
+      }
+
+    }
+    else if(param=='telefono'){
+      if(this.formProveedor.get('telefono').value!=''){
+        this.requerido3=false
+
+      }else{
+        this.requerido3=true
+      }
+
+    }
+    else if(param=='direccion'){
+      if(this.formProveedor.get('direccion').value!=''){
+        this.requerido4=false
+
+      }else{
+        this.requerido4=true
+      }
+
+    }
+
+  }
+  proveedorGuardar: Proveedor
+
+
+  operar() {
+    if (this.formProveedor.invalid) {
+      this.escribir('nombreEmpresa')
+      this.escribir('correo')
+      this.escribir('telefono')
+      this.escribir('direccion')
+
+    }else{
+      this.proveedorGuardar={
+        nombreEmpresa:this.formProveedor.value.nombreEmpresa,
+        correo:this.formProveedor.value.correo,
+        telefono:this.formProveedor.value.telefono,
+        direccion:this.formProveedor.value.direccion
+      };
+      this.listarProveedor.registrarProveedor(this.proveedorGuardar).subscribe(data =>{ 
+          if(data['Mensaje']=='Ya existe proveedor'){
+            this.listarProveedor.setMensajeCambio('Ya existe proveedor')
+          }
+            else if(data['Mensaje']=='Proveedor registrado correctamente'){
+              this.formProveedor.get('nombreEmpresa').setValue('')
+          this.formProveedor.get('correo').setValue('')
+          this.formProveedor.get('telefono').setValue('')
+          this.formProveedor.get('direccion').setValue('')
+  
+              this.listarProveedor.setMensajeCambio('Proveedor registrado correctamente')
+              this.listarProveedor.listarProveedor().subscribe(data =>{
+                this.listarProveedor.settabNumCambio(data)
+                this.crearTabla(data);
+              });
+            }else{
+              this.listarProveedor.setMensajeCambio('Error: Ya existe proveedor')
+            }
+          })
+      }
+    }
+  }
+
+ 

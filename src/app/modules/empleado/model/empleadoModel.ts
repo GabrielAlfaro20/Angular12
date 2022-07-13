@@ -6,7 +6,7 @@ export class Empleado{
     correoEmpl?:string;
     passwordEmpl?:string;
     rolEmpl?: string;
-    estadoEmpl?: boolean;
+    estadoEmpl?: string;
 
 }
 

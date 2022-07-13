@@ -56,8 +56,9 @@
                 <mat-form-field style="width: 40%;margin-left: 6.5%;">
                   <mat-label>Categoria de producto</mat-label >
                   <input type="text" matInput formControlName="nombreCate" (keyup)="escribirData()" >
-                </mat-form-field>                   
-                <p *ngIf="invalido && f.nombreCate " style="color: red;"> La categoria ya existe!</p>
+                </mat-form-field>               
+                <p class="alert alert-danger" *ngIf="invalido && f.nombreCate " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;">La categoria ya existe!</p>
+                <p class="alert alert-danger" *ngIf="cateRequerido && f.nombreCate " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;">Categoría Requerido</p>
               </div>
               <div class="campo-botones">
                 <div class="dos" >

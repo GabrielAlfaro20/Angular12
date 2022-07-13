@@ -38,4 +38,7 @@ export class EmpleadoService {
   eliminarEmpleado(parametro:string){
     return this.http.delete(baseUrl+"eliminarProveedor/"+parametro);
   }
+  registrarEmpleado(parametro: Empleado):Observable<Empleado[]>{
+    return this.http.post<Empleado[]>(baseUrl+"registrarEmpleados",parametro);
+  }
 }

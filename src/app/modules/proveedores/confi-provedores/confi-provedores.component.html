@@ -72,32 +72,33 @@
             <div class="campo-secundario">
                 <mat-form-field style="width: 40%;margin-left: 6.5%;">
                   <mat-label>Nombre de Empresa</mat-label >
-                  <input type="text" matInput formControlName="nombreEmpresa" (keyup)="escribirData()">
+                  <input type="text" matInput formControlName="nombreEmpresa" (keyup)="escribir('nombreEmpresa')" >
                 </mat-form-field>
-                <p *ngIf="invalido && f.nombreEmpresa " style="color: red;"> El nombre ya existe!</p>                  
+                <p class="alert alert-danger"  *ngIf="invalido1 && f.nombreEmpresa " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> El nombre ya existe!</p>
+                <p class="alert alert-danger"  *ngIf="requerido1 && f.nombreEmpresa " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Nombre requerido</p>                 
               </div>
               <div class="campo-secundario">
                 <mat-form-field style="width: 40%;margin-left: 6.5%;">
                   <mat-label>Correo electrónico</mat-label >
-                  <input type="text" matInput formControlName="correo" (keyup)="escribirData1()" >
+                  <input type="text" matInput formControlName="correo" (keyup)="escribir('correo')"  >
                 </mat-form-field> 
-                <p *ngIf="invalido && f.correo " style="color: red;"> El correo electrónico ya existe!</p>                  
+                <p class="alert alert-danger"  *ngIf="requerido2 && f.correo "  style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Correo requerido</p>                    
               </div>
               <div class="campo-secundario">
                 <mat-form-field style="width: 40%;margin-left: 6.5%;">
                   <mat-label>Teléfono</mat-label >
-                  <input type="text" matInput formControlName="telefono" (keyup)="escribirData()">
+                  <input type="text" matInput formControlName="telefono" (keyup)="escribir('telefono')" >
                 </mat-form-field>
-                <p *ngIf="invalido && f.telefono " style="color: red;"> El teléfono ya existe!</p>                 
+                <p class="alert alert-danger" *ngIf="requerido3 && f.telefono " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Telèfono requerido</p>                   
               </div>
               <div class="campo-secundario">
                 <mat-form-field style="width: 40%;margin-left: 6.5%;">
                   <mat-label>Dirección</mat-label >
-                  <input type="text" matInput formControlName="direccion" (keyup)="escribirData()" >
+                  <input type="text" matInput formControlName="direccion" (keyup)="escribir('direccion')"  >
                 </mat-form-field>
-                <p *ngIf="invalido && f.direccion " style="color: red;"> La dirección ya existe!</p>                  
+                <p class="alert alert-danger" *ngIf="requerido4 && f.direccion " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Direcciòn requerido</p>               
               </div>
-              <div class="campo-botones">
+              <div class="campo-botones"> 
                 <div class="dos" >
                   <button   class=" btn btn-success" (click)="operar()" id="boton-add">
                    Registrar Proveedor
