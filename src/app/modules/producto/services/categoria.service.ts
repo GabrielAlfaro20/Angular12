@@ -40,7 +40,7 @@ export class CategoriaService {
    eliminarCategoria(parametro:string){
     return this.http.delete(baseUrl+"eliminar/"+parametro);
   }
-
-
-   
+  registrarCategoria(parametro: Categoria):Observable<Categoria[]>{
+    return this.http.post<Categoria[]>(baseUrl+"agregar/",parametro);
+  }
 }

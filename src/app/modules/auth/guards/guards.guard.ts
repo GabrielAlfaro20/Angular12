@@ -9,17 +9,29 @@ import { Observable } from 'rxjs';
 })
 export class GuardsGuard implements CanActivate {
   constructor(
-    private loginService:LoginServiceService,
-    private router:Router,
-  ){ }
-  canActivate():boolean{
-    if(!this.loginService.isAuth()){
-      console.log('Token no es valido o ya expiro');
-      this.router.navigate(['/auth/login'])
-      return false;
-
+    private login: LoginServiceService,
+    private router: Router,
+  ) { }
+  canActivate(): boolean {
+    if (this.login.getToken() != null) {
+        console.log("logeado exitoso");
+        return true
     }
-    return true;
-  }
+    else {
+      this.login.clear()
+      this.router.navigate(['/auth/login'])
+      console.log("error logeate");
+      return false
+    }
 
+    //tercera comentada
+    /*     if(!this.loginService.isAuth()){
+          console.log('Token no es valido o ya expiro');
+          this.router.navigate(['/auth/login'])
+          return false;
+
+        }
+        return true; */
+
+  }
 }

@@ -10,6 +10,7 @@ const baseUrl = environment.HOST + '/proveedor/'
 })
 export class ProveedorService {
   private mensajeCambio = new Subject<string>();
+  private tabNumCambio = new Subject<Proveedor[]>();
 
   constructor(
     private http:HttpClient
@@ -21,4 +22,27 @@ export class ProveedorService {
    listarProveedor(): Observable<Proveedor[]> {
     return this.http.get<Proveedor[]> (baseUrl+"listarProveedores");
    }
+   setMensajeCambio(mensaje: string) {
+    this.mensajeCambio.next(mensaje);
+  }
+
+  getMensajeCambio() {
+    return this.mensajeCambio.asObservable();
+  }
+
+  
+  settabNumCambio(lista: Proveedor[]) {
+    this.tabNumCambio.next(lista);
+  }
+
+  gettabNumCambio() {
+    return this.tabNumCambio.asObservable();
+  }
+  eliminarProveedor(parametro:string){
+    return this.http.delete(baseUrl+"eliminarEmpleado/"+parametro);
+  }
+  registrarProveedor(parametro: Proveedor):Observable<Proveedor[]>{
+    return this.http.post<Proveedor[]>(baseUrl+"agregarProveedor/",parametro);
+
+  }
 }
