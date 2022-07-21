@@ -14,7 +14,7 @@ const routes: Routes = [
     path: '',
     canActivate: [GuardsGuard,RolesGuardsGuard],
     data: {
-      expectedRole: 'ADMIN'
+      expectedRole: 'ROLE_ADMIN'
     },
     // canActivate: [RolesGuardsGuard],
     loadChildren: () =>

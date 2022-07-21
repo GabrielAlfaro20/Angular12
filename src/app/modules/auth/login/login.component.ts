@@ -73,7 +73,6 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.login.crearToken(login).subscribe(
         (resp: any) => {
-          /*      console.log(resp) */
           this.login.setToken(resp.token)
           //  this.cookieService.set('token',data.token.);
           //  this.authInterceptorService.
