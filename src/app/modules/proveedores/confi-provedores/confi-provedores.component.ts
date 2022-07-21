@@ -10,6 +10,7 @@ import { elementAt } from 'rxjs/operators';
 import { Proveedor } from '../model/proveedor';
 import { ProveedorService } from '../service/proveedor.service';
 import { ModalEliminarProveedorComponent } from './modal-eliminar-proveedor/modal-eliminar-proveedor.component';
+import { ProveedorEditarComponent } from './proveedor-editar/proveedor-editar.component';
 
 @Component({
   selector: 'app-confi-provedores',
@@ -55,8 +56,17 @@ export class ConfiProvedoresComponent implements OnInit {
 
     })
   }
-  consultar() {
+
+  editar(provee:Proveedor){
+    this.dialog.open(ProveedorEditarComponent , {
+      width: '600px',
+      height: '550px',
+      data: provee
+    });
+
   }
+
+  
   crearTabla(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
@@ -81,7 +91,7 @@ export class ConfiProvedoresComponent implements OnInit {
   eliminarProveedor(proveedor: Proveedor) {
     console.log("hola mundo");
     this.dialog.open(ModalEliminarProveedorComponent, {
-      width: '500px',
+      width: '600px',
       height: '250px',
       data: {
         ...proveedor

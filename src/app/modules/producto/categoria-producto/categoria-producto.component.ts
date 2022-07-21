@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ModalEliminarCategoriaComponent } from '../modal-eliminar-categoria/modal-eliminar-categoria.component';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from '../services/categoria.service';
+import { CategoriaEditarComponent } from './categoria-editar/categoria-editar.component';
 
 @Component({
   selector: 'app-categoria-producto',
@@ -42,6 +43,7 @@ export class CategoriaProductoComponent implements OnInit {
     });
 
   }
+  indiceTab:number=0;
   formulario() {
     this.formCagoriaProducto = this.formBuilder.group({
       nombreCate: ['', Validators.required]
@@ -51,6 +53,14 @@ export class CategoriaProductoComponent implements OnInit {
     this.listarCat.listarCategoria().subscribe(data => {
       console.log(data);
     })
+  }
+  editar(cate:[]){
+    this.dialog.open(CategoriaEditarComponent , {
+      width: '720px',
+      height: '400px',
+      data: cate
+    });
+  
   }
 
   crearTabla(data: any[]) {

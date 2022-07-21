@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Empleado } from '../model/empleadoModel';
 import { EmpleadoService } from '../service/empleado.service';
+import { EmpleadoEditarComponent } from './empleado-editar/empleado-editar.component';
 import { ModalEliminarEmpleadoComponent } from './modal-eliminar-empleado/modal-eliminar-empleado.component';
 
 @Component({
@@ -72,6 +73,14 @@ export class ConfiEmpleadoComponent implements OnInit {
        this.dataSource.paginator.firstPage();
      }
  }
+
+ editar(any:[]){
+  this.dialog.open(EmpleadoEditarComponent , {
+    width: '720px',
+    height: '600px',
+  });
+
+}
 
  cargardatosProve(){
   this.listarDeEmpleados.listEmpleados().subscribe((data) =>{

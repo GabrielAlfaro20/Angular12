@@ -39,10 +39,12 @@ export class ProveedorService {
     return this.tabNumCambio.asObservable();
   }
   eliminarProveedor(parametro:string){
-    return this.http.delete(baseUrl+"eliminarEmpleado/"+parametro);
+    return this.http.delete(baseUrl+"eliminarProveedor/"+parametro);
   }
   registrarProveedor(parametro: Proveedor):Observable<Proveedor[]>{
     return this.http.post<Proveedor[]>(baseUrl+"agregarProveedor/",parametro);
-
+  }
+  editarProveedor(parametro: Proveedor):Observable<Proveedor[]>{
+    return this.http.put<Proveedor[]>(baseUrl+"actualizarProveedor/",parametro);
   }
 }

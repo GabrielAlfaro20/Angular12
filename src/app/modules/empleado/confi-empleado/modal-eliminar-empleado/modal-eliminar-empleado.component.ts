@@ -31,6 +31,7 @@ export class ModalEliminarEmpleadoComponent implements OnInit {
     })).subscribe(data =>{
       this.serviceEmpleado.setMensajeCambio("Empleado eliminado correctamente")
       this.serviceEmpleado.settabNumCambio(data)
+      this.cerrar();
     })
   }
 

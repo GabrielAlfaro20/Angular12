@@ -36,7 +36,7 @@ export class EmpleadoService {
     return this.tabNumCambio.asObservable();
   }
   eliminarEmpleado(parametro:string){
-    return this.http.delete(baseUrl+"eliminarProveedor/"+parametro);
+    return this.http.delete(baseUrl+"eliminarEmpleado/"+parametro);
   }
   registrarEmpleado(parametro: Empleado):Observable<Empleado[]>{
     return this.http.post<Empleado[]>(baseUrl+"registrarEmpleados",parametro);
