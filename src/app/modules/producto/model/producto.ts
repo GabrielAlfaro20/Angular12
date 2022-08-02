@@ -2,7 +2,7 @@ export interface Producto {
   idProductoPro: number
   imageProp: string
   nombrePro: string
-  estadoPro: boolean
+  estadoPro: string
   categoria: Categoria
   caracteristicas: Caracteristica[]
 }

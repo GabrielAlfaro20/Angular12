@@ -11,7 +11,7 @@ const baseUrl = environment.HOST + '/producto/'
 export class ProductosService {
   private mensajeCambio = new Subject<string>();
   private tabNumCambio = new Subject<Producto[]>();
-  
+
   constructor(
     private http:HttpClient
   ) {}
@@ -24,7 +24,7 @@ export class ProductosService {
     return this.mensajeCambio.asObservable();
   }
 
-  
+
   settabNumCambio(lista: Producto[]) {
     this.tabNumCambio.next(lista);
   }
@@ -39,6 +39,9 @@ export class ProductosService {
 
    eliminarProducto(parametro:string){
     return this.http.delete(baseUrl+"eliminarProducto/"+parametro);
+  }
+  guardarProducto(parametro:Producto):Observable<Producto[]>{
+    return this.http.post<Producto[]>(baseUrl+"agregarProducto/",parametro);
   }
 
 

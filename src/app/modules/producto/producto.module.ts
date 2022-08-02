@@ -10,6 +10,7 @@ import { ModalEliminarCategoriaComponent } from './modal-eliminar-categoria/moda
 import { CategoriaEditarComponent } from './categoria-producto/categoria-editar/categoria-editar.component';
 import { ProductoEditarComponent } from './mantenimiento-producto/producto-editar/producto-editar.component';
 import { ModalEliminarProductoComponent } from './mantenimiento-producto/modal-eliminar-producto/modal-eliminar-producto.component';
+import { ProductoCrearComponent } from './mantenimiento-producto/producto-crear/producto-crear.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
     ModalEliminarCategoriaComponent,
     CategoriaEditarComponent,
     ProductoEditarComponent,
-    ModalEliminarProductoComponent,],
+    ModalEliminarProductoComponent,
+    ProductoCrearComponent,],
 })
 export class ProductoModule { }
