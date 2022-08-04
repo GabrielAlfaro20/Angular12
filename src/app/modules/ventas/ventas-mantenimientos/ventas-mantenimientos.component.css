@@ -1,0 +1,125 @@
+.principal{
+  display: flex;
+  flex-direction: column;
+}
+.barra-busqueda{
+  float: right;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 1%;
+  height: 60%;
+}
+.nav-busqueda{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  float: right;
+  background-color: white !important;
+}
+.titulo{
+  font-size: 24px;
+  margin:0;
+  background-color: white !important;
+  padding-left: 3%;
+  font-weight: bold;
+}
+.cod_venta{
+width: 10%;
+  font-size: 16px;
+}
+.tipove{
+  width: 15%;
+  font-size: 16px;
+}
+.cliente{
+  width: 15%;
+  font-size: 16px;
+}
+.direccion{
+  width: 25%;
+  font-size: 16px;
+}
+.fecha{
+  width: 10%;
+  font-size: 16px;
+}
+.fecha{
+  width: 10%;
+  font-size: 16px;
+}
+.acciones{
+  width: 15%;
+  font-size: 16px;
+}
+table {
+  width: 100%;
+}
+table tr:nth-child(odd) {
+  background: #fff;
+}
+table tr:nth-child(even) {
+  background: lightsteelblue;
+}
+.mat-row{
+  height: 6px;
+}
+td{
+  height: 6px;
+  min-height: min-content;
+}
+
+@media (max-width: 1150px){
+  .idcategorias{
+    width: 12%;
+  }
+  .tipove{
+    width: 15%;
+  }
+  .cliente{
+    width: 10%;
+  }
+  .direccion{
+  width: 20%;
+  }
+  .fecha{
+    width: 10%;
+  }
+  .acciones{
+    width: 40%;
+  }
+}
+.mat-button{
+  height: 6px;
+  padding: 0;
+}
+
+.mat-button:hover{
+  background: red;
+}
+
+.botones{
+  margin: 0 auto;
+  z-index: -1;
+}
+.botones-finales{
+  display: flex;
+  flex-direction: row;
+  margin-left: 20%;
+}
+.mat-icon{
+  line-height: 0.6rem;
+}
+td, th {
+  width: 10%;
+}
+
+th{
+  background-color: lightsteelblue;
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+}
+#boton-agregar{
+  margin-top: 1.5%;
+}

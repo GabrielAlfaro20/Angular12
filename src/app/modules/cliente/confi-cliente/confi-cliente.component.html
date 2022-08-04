@@ -1,0 +1,59 @@
+<div class="principal">
+  <div class="nav-busqueda position-sticky sticky-top">
+    <h3 class="titulo" style="justify-content: center;padding-top: 2%;width: 30%;"> LISTA DE CLIENTES</h3>
+    <mat-form-field appearance="standard" style="float: left; width: 30%; top: -10px; margin-left:7% ;">
+      <div class="barra-busqueda">
+        <mat-icon style="margin-top: 1.2%;margin-left: -12%;">search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input maxlength="80" id="mySelect">
+      </div>
+    </mat-form-field>
+  </div>
+
+        <div class="mat-elevation-z8" style="margin-left: 50px;width: 92%;">
+          <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
+            <ng-container matColumnDef="idcliente">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="idcliente" class="idcliente">CÓDIGO</th>
+              <td mat-cell *matCellDef="let row" class="idcliente">
+                {{row.idcliente}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="nombre" class="nombre">NOMBRES</th>
+              <td mat-cell *matCellDef="let row" class="nombre">
+                {{row.nombre}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="apellido" class="apellido">APELLIDOS</th>
+              <td mat-cell *matCellDef="let row" class="apellido">
+                {{row.apellido}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="dni">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="dni" class="dni">DNI</th>
+              <td mat-cell *matCellDef="let row" class="dni">
+                {{row.dni}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="telefono">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="telefono" class="telefono">TELÉFONO</th>
+              <td mat-cell *matCellDef="let row" class="telefono">
+                {{row.telefono}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="direcc">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="direcc" class="direcc">DIRECCIÓN</th>
+              <td mat-cell *matCellDef="let row" class="direcc">
+                {{row.direcc}}
+              </td>
+            </ng-container>  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-table"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No se encontraron resultados para "{{input.value}}"</td>
+            </tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5,10,15]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+    <button type="button" class=" btn btn-danger" id="boton-regresar" routerLink="/home"><i class="fas fa-long-arrow-alt-left"></i></button>

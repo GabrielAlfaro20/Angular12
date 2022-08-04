@@ -1,0 +1,150 @@
+<div class="principal">
+  <div class="nav-busqueda position-sticky sticky-top">
+    <h3 class="titulo" style="justify-content: center;padding-top: 2%;width: 30%;"> CONFIGURACIÓN DE EMPLEADOS</h3>
+    <mat-form-field appearance="standard" style="float: left; width: 30%; top: -10px; margin-left:7% ;">
+      <div class="barra-busqueda">
+        <mat-icon style="margin-top: 1.2%;margin-left: -12%;">search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input maxlength="80" id="mySelect">
+      </div>
+    </mat-form-field>
+  </div>
+
+        <div class="mat-elevation-z8" style="margin-left: 50px;width: 92%;">
+          <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
+            <ng-container matColumnDef="idEmpleado">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="idEmpleado" class="idEmpleado">CÓDIGO</th>
+              <td mat-cell *matCellDef="let row" class="idEmpleado">
+                {{row.idEmpleado}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="nombresEml">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="nombresEml" class="nombresEml">NOMBRES</th>
+              <td mat-cell *matCellDef="let row" class="nombresEml">
+                {{row.nombresEml}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="apellidosEmpl">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="apellidosEmpl" class="apellidosEmpl">APELLIDOS</th>
+              <td mat-cell *matCellDef="let row" class="apellidosEmpl">
+                {{row.apellidosEmpl}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="dniEml">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="dniEml" class="dniEml">DNI</th>
+              <td mat-cell *matCellDef="let row" class="dniEml">
+                {{row.dniEml}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="correoEmpl">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="correoEmpl" class="correoEmpl">CORREO</th>
+              <td mat-cell *matCellDef="let row" class="correoEmpl">
+                {{row.correoEmpl}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="rolEmpl">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="rolEmpl" class="rolEmpl">CARGO</th>
+              <td mat-cell *matCellDef="let row" class="rolEmpl">
+                {{row.rolEmpl}}
+              </td>
+            </ng-container>
+            <ng-container  matColumnDef="estadoEmpl">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header="estadoEmpl" class="estadoEmpl"> ESTADO</th>
+              <td mat-cell *matCellDef="let row" class="estadoEmpl">
+                <mat-checkbox [disabled]="true" [checked]="row.estadoEmpl == '1' ? true : false"></mat-checkbox>
+              </td>
+            </ng-container>   
+            <ng-container matColumnDef="acciones" class="acciones">
+              <th style="padding-left:2.5%;" mat- header-cell *matHeaderCellDef class="botones"> ACCIONES </th>
+              <td mat-cell *matCellDef="let row" class="botones">
+                <button (click)="editar(row)"
+                  style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;vertical-align: text-top;">
+                  <mat-icon   style="color: black;margin-top: 20%;">edit</mat-icon>
+                </button>
+                <button class="consultar"
+                  style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
+                  <mat-icon style="color: #3f51b5;margin-top: 20%;">visibility</mat-icon>
+                </button>
+                <button (click)="eliminarEmpleado(row)" 
+                  style="height: 25px;position: static;color: red;border: none;background: transparent;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
+                  <mat-icon  style="margin-top: 20%">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-table"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No se encontraron resultados para "{{input.value}}"</td>
+            </tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5,10,15]" aria-label="Select page of users"></mat-paginator>
+        </div>
+        <form [formGroup]="formEmpleado">
+          <div class="caja-registro">
+            <div class="campo">
+              <div class="campo-intermedio">
+                <div class="campo-secundario">
+                  <mat-form-field style="width: 46%;margin-left: 6.5%;">
+                    <mat-label>DNI</mat-label >
+                    <input type="text" matInput formControlName="dniEml" (keyup)="escribir('dniEml')">
+                  </mat-form-field>
+                  <p class="alert alert-danger"  *ngIf="invalido1 && f.dniEml " style="color: red;margin-left: 6.5%;width: 46%;margin-left: 6.5%;"> El DNI ya existe!</p>
+                  <p class="alert alert-danger"  *ngIf="requerido3 && f.dniEml " style="color: red;margin-left: 6.5%;width: 46%;margin-left: 6.5%;"> DNI requerido</p>                    
+                </div>
+            
+            <div class="campo-checkbox">
+              <mat-checkbox formControlName="estadoEmpl">Estado del empleado</mat-checkbox>
+            </div>
+            </div>
+            <div class="campo-secundario">
+              <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                <mat-label>Nombres</mat-label >
+                <input type="text" matInput formControlName="nombresEml" (keyup)="escribir('nombresEml')">
+              </mat-form-field>
+              <p class="alert alert-danger"  *ngIf="requerido1 && f.nombresEml " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Nombres requerido</p>                  
+            </div>
+            <div class="campo-secundario">
+              <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                <mat-label>Apellidos</mat-label >
+                <input type="text" matInput formControlName="apellidosEmpl" (keyup)="escribir('apellidosEmpl')">
+              </mat-form-field>
+              <p class="alert alert-danger"  *ngIf="requerido2 && f.apellidosEmpl " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Apellidos requerido</p>                 
+            </div>
+            
+            <div class="campo-secundario">
+              <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                <mat-label>Password</mat-label >
+                <input type="text" matInput formControlName="passwordEmpl" (keyup)="escribir('passwordEmpl')">
+              </mat-form-field>
+              <p class="alert alert-danger"  *ngIf="requerido4 && f.passwordEmpl " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Password requerido</p>                  
+            </div>
+            <div class="campo-secundario">
+              <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                <mat-label>Correo electrónico</mat-label >
+                <input type="text" matInput formControlName="correoEmpl" (keyup)="escribir('correoEmpl')">
+              </mat-form-field>
+              <p class="alert alert-danger"  *ngIf="requerido5 && f.correoEmpl " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Nombre requerido</p>                 
+            </div>
+            <div class="campo-secundario">
+              <mat-form-field style="width: 40%;margin-left: 6.5%;">
+                <mat-label>Cargo</mat-label >
+                <input type="text" matInput formControlName="rolEmpl" (keyup)="escribir('rolEmpl')">
+              </mat-form-field> 
+              <p class="alert alert-danger"  *ngIf="requerido6 && f.rolEmpl " style="color: red;margin-left: 6.5%;width: 40%;margin-left: 6.5%;"> Cargo requerido</p>                  
+            </div>
+            
+            </div>
+              <div class="campo-botones">
+                <div class="dos" >
+                  <button   class=" btn btn-success" (click)="operar()" id="boton-add">
+                   Registrar Empleado
+                  </button>
+                  <button mat-fab style="margin-left: 45%;padding-top: 12px; background-color: dodgerblue;"
+                    id="boton-agregar">
+                      <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+          </div>
+        </form>
+    </div>
+    <button type="button" class=" btn btn-danger" id="boton-regresar" routerLink="/home"><i class="fas fa-long-arrow-alt-left"></i></button>

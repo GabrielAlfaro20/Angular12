@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-header">
+        Eliminar
+    </div>
+    <div class="card-body">
+        <i class="fas fa-exclamation-triangle" style='color: red'></i>
+        <p>¿Deseas eliminar al empleado"{{eliminarEmpleado.idEmpleado}} - {{eliminarEmpleado.nombresEml}} {{eliminarEmpleado.apellidosEmpl}}"?</p>
+        <div class="dos">
+            <button (click)="operar()" type="button" class=" btn btn-success" ><i class="fas fa-check"></i></button>
+            <button (click)="cerrar()" type="button" class=" btn btn-danger" ><i class="fas fa-times"></i></button>
+        </div>
+
+    </div>
+</div>

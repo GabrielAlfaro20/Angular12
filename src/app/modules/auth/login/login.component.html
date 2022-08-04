@@ -1,32 +1,34 @@
 <div class="wrapper fadeInDown">
-    <div id="formContent">
-        <!-- Icon -->
-        <div class="fadeIn first">
-            <img src="assets/logo.png" style="width: 350px; height: 170px;" id="icon" alt="User Icon" />
-        </div>
-        <form [formGroup]="from">
-            <mat-form-field class="">
-                <input type="text" class="form-control" formControlName="txtUsuario" matInput placeholder="Correo">
-            </mat-form-field>
-
-            <mat-form-field class="">
-                <input maxlength="50" [type]="hide ? 'password' : 'text'" matInput placeholder="clave"
-                    formControlName="txtPassword">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                </button>
-            </mat-form-field>
-            <mat-form-field class="">
-                <mat-select formControlName="txtRol" value="A">
-                    <mat-option value="A">Administrador</mat-option>
-                    <mat-option value="V">Venta</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <div class="formbutton">
-                <button  mat-raised-button color="warn" style="text-align: center;" (click)="ingresar()">Ingresar</button>
-            </div>
-            <div class="separado">
-            </div>
-        </form>
+  <div id="formContent">
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="assets/logo.png" style="width: 350px; height: 170px;" id="icon" alt="User Icon" />
     </div>
+    <form [formGroup]="form">
+      <mat-form-field class="">
+        <input type="text" class="form-control" (keyup)="usuario()" formControlName="txtUsuario" matInput
+          placeholder="Correo">
+      </mat-form-field>
+      <p *ngIf="validarUsuario && f.txtUsuario" style="color: red;margin-left: 45px;
+            text-align: initial;">El Usuario es Obligatorio</p>
+
+      <mat-form-field class="">
+        <input maxlength="50" (keyup)="clave()" [type]="hide ? 'password' : 'text'" matInput placeholder="clave"
+          formControlName="txtPassword">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+        </button>
+      </mat-form-field>
+      <p *ngIf="validarClave && f.txtPassword" style="color: red;margin-left: 45px;
+            text-align: initial;">La Clave es Obligatorio </p>
+      <p *ngIf="usuarioNo " style="color: red;">El Usuario o la clave no existe </p>
+
+      <div class="formbutton">
+        <button mat-raised-button color="warn" style="text-align: center;" (click)="ingresar()">Ingresar</button>
+      </div>
+      <div class="separado">
+      </div>
+
+    </form>
+  </div>
 </div>

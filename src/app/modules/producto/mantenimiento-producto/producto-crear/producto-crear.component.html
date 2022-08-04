@@ -1,0 +1,40 @@
+<form [formGroup]="form">
+<div class="card">
+    <div class="card-header">
+      <p style="
+    float: left; padding-top:15px ;"><b>Crear Producto</b></p>
+      <button type="button" class=" btn btn-danger" (click)="cerrar()"style="float:right; align-items: flex-end;margin-left: 15px;"><i
+          class="fas fa-long-arrow-alt-left" ></i>
+      </button>
+      <button (click)="guardar()" type="button" class=" btn btn-success" style="float:right; align-items: flex-end;"><i class="fas fa-save"
+          type="button"></i>
+      </button>
+    </div>
+    <div class="card-body" style="margin: auto; width: 100%">
+      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+        <mat-form-field  style="width: 100%;" appearance="standard" class="search">
+          <mat-label>Nombre Del Producto</mat-label>
+          <input formControlName="nombreProducto" matInput>
+        </mat-form-field>
+      </div>
+      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+        <mat-form-field   style="width: 100%;" appearance="standard" class="search">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="txtcategoria">
+            <mat-option *ngFor="let op of categoria" [value]="op.nombreCate">
+              {{op.nombreCate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+        estado
+      </div>
+      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+        <input   accept="image/png,image/jpg,image/jpeg,image/svg" type="file" formControlName="imagen" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
+        <img (click)="photoInput.click()" style="width: 100%; height:360px;"
+          [src]="photoSelected || 'assets/productos/no-imagen.png'" class="img-fluid" alt="No image">
+      </div>
+    </div>
+  </div>
+</form>
