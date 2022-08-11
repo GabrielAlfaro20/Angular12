@@ -1,19 +1,20 @@
+//
 export interface Producto {
-  idProductoPro: number
+  idProductoPro?: number
   imageProp: string
-  nombrePro: string
-  estadoPro: string
-  categoria: Categoria
-  caracteristicas: Caracteristica[]
+  nombrePro: string//
+  estadoPro: string//
+  categoria?: Categoria//
+  caracteristicas?: Caracteristica[]
 }
-
+//2
 export interface Categoria {
-  idcategorias: number
-  nombreCate: string
+  idcategorias: string,
+  nombreCate?: string
 }
-
+//1
 export interface Caracteristica {
-  idCaracteristica: number
+  idCaracteristica?: number
   descriCaract: string
   cantidCaract: number
   precioCaract: number

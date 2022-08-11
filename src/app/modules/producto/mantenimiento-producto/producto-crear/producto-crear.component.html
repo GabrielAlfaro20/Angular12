@@ -1,39 +1,60 @@
 <form [formGroup]="form">
-<div class="card">
+  <div class="card">
     <div class="card-header">
       <p style="
     float: left; padding-top:15px ;"><b>Crear Producto</b></p>
-      <button type="button" class=" btn btn-danger" (click)="cerrar()"style="float:right; align-items: flex-end;margin-left: 15px;"><i
-          class="fas fa-long-arrow-alt-left" ></i>
+      <button type="button" class=" btn btn-danger" (click)="cerrar()"
+        style="float:right; align-items: flex-end;margin-left: 15px;"><i class="fas fa-long-arrow-alt-left"></i>
       </button>
-      <button (click)="guardar()" type="button" class=" btn btn-success" style="float:right; align-items: flex-end;"><i class="fas fa-save"
-          type="button"></i>
+      <button (click)="guardar()" type="button" class=" btn btn-success" style="float:right; align-items: flex-end;"><i
+          class="fas fa-save" type="button"></i>
       </button>
     </div>
     <div class="card-body" style="margin: auto; width: 100%">
       <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
-        <mat-form-field  style="width: 100%;" appearance="standard" class="search">
+        <mat-form-field style="width: 45%;" appearance="standard" class="search">
           <mat-label>Nombre Del Producto</mat-label>
           <input formControlName="nombreProducto" matInput>
         </mat-form-field>
-      </div>
-      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
-        <mat-form-field   style="width: 100%;" appearance="standard" class="search">
+        <mat-form-field style="margin-left:30px ; width: 50%;" appearance="standard" class="search">
           <mat-label>Categoria</mat-label>
           <mat-select formControlName="txtcategoria">
-            <mat-option *ngFor="let op of categoria" [value]="op.nombreCate">
-              {{op.nombreCate}}
+            <mat-option *ngFor="let op of categoria" [value]="op.idcategorias">
+              {{op.idcategorias}}- {{op.nombreCate}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
-        estado
+
+        <mat-form-field style="width: 45%;" appearance="standard" class="search">
+          <mat-label>Precio Del Producto</mat-label>
+          <input formControlName="precioProducto" matInput>
+        </mat-form-field>
+
+        <mat-form-field style="margin-left:30px;width: 50%;" appearance="standard" class="search">
+          <mat-label>Cantidad Del Producto</mat-label>
+          <input formControlName="cantidadProducto" matInput>
+        </mat-form-field>
       </div>
       <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
-        <input   accept="image/png,image/jpg,image/jpeg,image/svg" type="file" formControlName="imagen" class="d-none" (change)="onPhotoSelected($event)" #photoInput>
-        <img (click)="photoInput.click()" style="width: 100%; height:360px;"
+        <mat-form-field style="width: 100%;" appearance="standard" class="search">
+          <mat-label>Descripcion Del Producto</mat-label>
+          <input formControlName="descripcionProducto" matInput>
+        </mat-form-field>
+      </div>
+      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+        <!-- <input accept="image/png,image/jpg,image/jpeg,image/svg" type="file" formControlName="imagen" class="d-none"
+          (change)="onPhotoSelected($event)" #photoInput>
+        <img (click)="photoInput.click()" style="width: 45%; height:260px;"
           [src]="photoSelected || 'assets/productos/no-imagen.png'" class="img-fluid" alt="No image">
+       -->
+       <ngx-dropzone type="image" (change)="onSelect($event)" accept="image/png,image/jpg,image/jpeg,image/svg" [multiple]="false">
+        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"[removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </ngx-dropzone>
       </div>
     </div>
   </div>

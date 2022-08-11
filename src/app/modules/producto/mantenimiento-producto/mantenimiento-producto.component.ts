@@ -56,7 +56,7 @@ export class MantenimientoProductoComponent implements OnInit {
 
   crear(){
     this.dialog.open(ProductoCrearComponent , {
-      width: '500px',
+      width: '700px',
       height: '650px',
       autoFocus:false,
     });

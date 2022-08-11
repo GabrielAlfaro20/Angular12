@@ -29,7 +29,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {NgxDropzoneModule} from "ngx-dropzone";
 @NgModule({
   declarations: [],
   imports: [
@@ -62,7 +62,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTabsModule,
     MatCheckboxModule,
     MatTooltipModule,
-    MatRadioModule
+    MatRadioModule,
+    NgxDropzoneModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorImpl },
