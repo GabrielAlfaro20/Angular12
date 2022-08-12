@@ -31,7 +31,7 @@
             <ng-container matColumnDef="imageProp">
               <th mat-header-cell *matHeaderCellDef mat-sort-header="imageProp" class="imageProp">IMAGEN</th>
               <td mat-cell *matCellDef="let row" class="imageProp">
-                <img src="asset/Borrador.jpg">
+                <img style="width: 100px; height: 70px;" src={{row.imageProp}}>
                 
               </td>
             </ng-container>

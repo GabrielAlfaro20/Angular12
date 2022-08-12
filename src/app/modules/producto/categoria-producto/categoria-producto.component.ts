@@ -10,6 +10,7 @@ import { ModalEliminarCategoriaComponent } from '../modal-eliminar-categoria/mod
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from '../services/categoria.service';
 import { CategoriaEditarComponent } from './categoria-editar/categoria-editar.component';
+import { ConsultarCategoriaComponent } from './consultar-categoria/consultar-categoria.component';
 
 @Component({
   selector: 'app-categoria-producto',
@@ -56,6 +57,15 @@ export class CategoriaProductoComponent implements OnInit {
   }
   editar(cate:[]){
     this.dialog.open(CategoriaEditarComponent , {
+      width: '720px',
+      height: '400px',
+      data: cate
+    });
+  
+  }
+
+  consultar(cate:[]){
+    this.dialog.open(ConsultarCategoriaComponent , {
       width: '720px',
       height: '400px',
       data: cate
@@ -155,43 +165,6 @@ export class CategoriaProductoComponent implements OnInit {
       
     })
   }
-    
-    /* if (this.invalido == true) {
-      this.escribirData()
-    }
-    if (this.cateRequerido == true) {
-      console.log("prueba invalido");
-
-    }
-    if (this.formCagoriaProducto.invalid || this.invalido == true || this.cateRequerido==true ) {
-      this.listarCat.setMensajeCambio('Datos incorrectos')
-
-    } else {
-      this.invalido=false
-      this.cateRequerido=false
-    
-
-        this.cateGuardar = {
-          nombreCate: this.formCagoriaProducto.value.nombreCate
-        };
-        console.log(this.cateGuardar);
-        this.listarCat.registrarCategoria(this.cateGuardar).subscribe(data => {
-          if (data['Mensaje'] == 'Categoría Registrado correctamento') {
-
-            this.listarCat.setMensajeCambio('Categoría Registrado correctamento')
-            this.formCagoriaProducto.get('nombreCate').setValue('')
-            this.listarCat.listarCategoria().subscribe(data => {
-              this.listarCat.settabNumCambio(data)
-              this.crearTabla(data);
-            });
-
-          } else {
-            this.listarCat.setMensajeCambio('Error: Ya existe categoria')
-
-          }
-
-        })
-      } */
       
     }
   }

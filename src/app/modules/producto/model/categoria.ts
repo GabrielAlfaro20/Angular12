@@ -1,7 +1,7 @@
 export class Categoria{
-    PkID? : PkID_Cat;
-    nombreCate? : string
+    idcategorias?: number;
+    nombreCate?: string;
   }
  interface PkID_Cat{
-    idcategorias : string;
+    
 }

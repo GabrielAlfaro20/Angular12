@@ -50,6 +50,8 @@ export class MantenimientoProductoComponent implements OnInit {
   listarProductos() {
     this.listarCategoria.listarCategoria().subscribe(data => {
       console.log(data);
+      
+      
 
     })
   }

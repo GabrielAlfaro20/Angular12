@@ -1,6 +1,6 @@
 export class Proveedor{
 
-    PkID? : PkID_Prove;
+    idProveedor?: number;
     nombreEmpresa? : string
     correo? : string
     telefono?: string
@@ -8,6 +8,6 @@ export class Proveedor{
   }
 
  interface PkID_Prove{
-    idProveedor : string;
+    
 
 }
