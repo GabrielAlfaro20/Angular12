@@ -41,4 +41,7 @@ export class EmpleadoService {
   registrarEmpleado(parametro: Empleado):Observable<Empleado[]>{
     return this.http.post<Empleado[]>(baseUrl+"registrarEmpleados",parametro);
   }
+  editarEmpleado(parametro: Empleado): Observable<Empleado[]>{
+    return this.http.put<Empleado[]>(baseUrl+"actualizarEmpleado/",parametro);
+  }
 }

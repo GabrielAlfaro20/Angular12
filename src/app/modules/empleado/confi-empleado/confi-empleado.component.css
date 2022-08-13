@@ -17,6 +17,12 @@
   float: right;
   background-color: white !important;
 }
+.eyeicon{
+  position: absolute;
+  right: -15px;
+  top:10px;
+  cursor: pointer;
+}
 .titulo{
   font-size: 24px;
   margin:0;

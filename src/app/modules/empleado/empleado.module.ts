@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ConfiEmpleadoComponent } from './confi-empleado/confi-empleado.component';
 import { EmpleadoEditarComponent } from './confi-empleado/empleado-editar/empleado-editar.component';
+import { ConsultarEmpleadoComponent } from './confi-empleado/consultar-empleado/consultar-empleado.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
   declarations: [
     EmpleadoComponent,
     ConfiEmpleadoComponent,
-    EmpleadoEditarComponent
+    EmpleadoEditarComponent,
+    ConsultarEmpleadoComponent
   ]
 
 })

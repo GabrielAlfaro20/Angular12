@@ -53,6 +53,20 @@ export class MantenimientoProductoComponent implements OnInit {
     });
   } */
 
+  operar(){
+    
+  }
+
+  listarProductos() {
+    this.listarCategoria.listarCategoria().subscribe(data => {
+      console.log(data);
+      
+      
+
+    })
+  }
+  
+
 
   crear(){
     this.dialog.open(ProductoCrearComponent , {

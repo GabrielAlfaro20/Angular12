@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { switchMap } from 'rxjs/operators';
 import { Proveedor } from '../../model/proveedor';
 import { ProveedorService } from '../../service/proveedor.service';
 
@@ -10,7 +11,6 @@ import { ProveedorService } from '../../service/proveedor.service';
   styleUrls: ['./proveedor-editar.component.css']
 })
 export class ProveedorEditarComponent implements OnInit {
-  
   editarForm: FormGroup
   constructor(private dialogRef: MatDialogRef<ProveedorEditarComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Proveedor, private formBuilder: FormBuilder,private listarProveedor: ProveedorService,) { }
@@ -32,21 +32,19 @@ export class ProveedorEditarComponent implements OnInit {
       direccion:[this.obj.direccion, Validators.required]
     })
   }
+
   disabledCampo(){
     if(true){
       this.editarForm.get('idProveedor').disable()
+      this.editarForm.get('nombreEmpresa').disable()
     }
   }
-  campo1:boolean=false
-  campo2:boolean=false
-  campo3:boolean=false
-  campo4:boolean=false
+  invalido1: boolean = false
 
-  existe1:boolean=false
-  existe2:boolean=false
-  existe3:boolean=false
-  existe4:boolean=false
-
+  requerido1: boolean = false
+  requerido2: boolean = false
+  requerido3: boolean = false
+  requerido4: boolean = false
 
   escribirData(param:string){
     if(param=='nombreEmpresa'){
@@ -54,88 +52,86 @@ export class ProveedorEditarComponent implements OnInit {
       if(this.editarForm.get('nombreEmpresa').value.length>=1){
         this.listarProveedor.listarProveedor().subscribe(data =>{
           let prove = data.find(element =>element.nombreEmpresa==this.editarForm.get('nombreEmpresa').value)          
-        
-          
-          /* if(data[0].nombreEmpresa==prove){
-            console.log("son iguales");
-            
-          }else if(ata[0].nombreEmpresa!=prove){
-            console.log();
-            
-          } */
-          if(data[0].nombreEmpresa==prove ){
-            console.log(prove.nombreEmpresa);
-            
-            this.campo1=false
-            this.existe1=true
+          if(prove!=undefined){
+            this.invalido1=true
+            this.requerido1=false
             console.log("existe");
             
           }else{
-
-            this.campo1=false
-            this.existe1=false
             console.log("no existe");
-            
-          } 
+            this.requerido1=false
+            this.invalido1=false
+          }
         })
-  
+        this.requerido1=false
       }else{
-        this.campo1=true
+        this.requerido1=true
       }
 
     }
     else if(param=='correo'){
       if(this.editarForm.get('correo').value!=''){
-        this.campo2=false
+        this.requerido2=false
 
       }else{
-        this.campo2=true
+        this.requerido2=true
       }
 
     }
     else if(param=='telefono'){
       if(this.editarForm.get('telefono').value!=''){
-        this.campo3=false
+        this.requerido3=false
 
       }else{
-        this.campo3=true
+        this.requerido3=true
       }
 
     }
     else if(param=='direccion'){
       if(this.editarForm.get('direccion').value!=''){
-        this.campo4=false
+        this.requerido4=false
 
       }else{
-        this.campo4=true
+        this.requerido4=true
       }
+
     }
+
   }
   proveedorEditar : Proveedor
   guardarEditar(){
+    if(this.editarForm.invalid){
+      this.escribirData('correo')
+      this.escribirData('telefono')
+      this.escribirData('direccion')
+
+    }else{
+
     this.proveedorEditar={
-      nombreEmpresa:this.editarForm.value.nombreEmpresa,
+      idProveedor:this.obj.idProveedor,
+      nombreEmpresa:this.editarForm.get('nombreEmpresa').value,
       correo:this.editarForm.value.correo,
       telefono:this.editarForm.value.telefono,
       direccion:this.editarForm.value.direccion
     };
-    console.log(this.proveedorEditar);
-    this.listarProveedor.editarProveedor(this.proveedorEditar).subscribe((data)=>{
-      if(data['Mensaje']=='Error: El nombre del proveedor ya existe'){
-        this.listarProveedor.setMensajeCambio('Ya existe nombre')
-      }else if(data['Mensaje']=='Actualizado correctamente'){
-        this.listarProveedor.setMensajeCambio('Actualizado correctamente')
-        this.listarProveedor.listarProveedor().subscribe((data)=>{
+    
+    this.listarProveedor.editarProveedor(this.proveedorEditar).subscribe(data =>{
+      if(data['Mensaje']=='Proveedor actualizado correctamente'){
+        this.listarProveedor.setMensajeCambio('Proveedor actualizado correctamente')
+        this.listarProveedor.listarProveedor().subscribe(data =>{
           this.listarProveedor.settabNumCambio(data)
 
         });
-        this.cerrar();
+      }else{
+        this.listarProveedor.setMensajeCambio('Mensaje: Proveedor no existe')
       }
-      
-    })
-    
 
-  }
+  });
+  this.cerrar();
+    }
+    }
+  
+
   cerrar(val = {}) {
     this.dialogRef.close(val);
   }

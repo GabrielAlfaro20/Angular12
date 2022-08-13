@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Empleado } from '../model/empleadoModel';
 import { EmpleadoService } from '../service/empleado.service';
+import { ConsultarEmpleadoComponent } from './consultar-empleado/consultar-empleado.component';
 import { EmpleadoEditarComponent } from './empleado-editar/empleado-editar.component';
 import { ModalEliminarEmpleadoComponent } from './modal-eliminar-empleado/modal-eliminar-empleado.component';
 
@@ -23,6 +24,9 @@ export class ConfiEmpleadoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  visible: boolean = true;
+  changetype: boolean = true;
+
   public formEmpleado: FormGroup;
   constructor(private router: Router, private listarDeEmpleados: EmpleadoService,private dialog: MatDialog,
     private formBuilder: FormBuilder,private snackBar: MatSnackBar,private changeDetectorRefs: ChangeDetectorRef ) { }
@@ -31,6 +35,7 @@ export class ConfiEmpleadoComponent implements OnInit {
     this.listarEmleados();
     this.cargardatosProve();
     this.formularioEmpleado();
+    this.verPassword();
 
 
     this.listarDeEmpleados.gettabNumCambio().subscribe(data => {
@@ -40,6 +45,10 @@ export class ConfiEmpleadoComponent implements OnInit {
       this.snackBar.open(data, 'AVISO', { duration: 2000 });
     });
   
+  }
+  verPassword(){
+    this.visible =!this.visible
+    this.changetype = !this.changetype
   }
   formularioEmpleado(){
     this.formEmpleado=this.formBuilder.group({
@@ -74,10 +83,20 @@ export class ConfiEmpleadoComponent implements OnInit {
      }
  }
 
- editar(any:[]){
+ editar(emplea:Empleado){
   this.dialog.open(EmpleadoEditarComponent , {
-    width: '720px',
-    height: '600px',
+    width: '760px',
+    height: '620px',
+    data:emplea
+  });
+
+}
+
+consultar(emplea:Empleado){
+  this.dialog.open(ConsultarEmpleadoComponent , {
+    width: '760px',
+    height: '620px',
+    data:emplea
   });
 
 }
