@@ -24,15 +24,18 @@
                 {{row.nombreCate}}
               </td>
             </ng-container>
+<<<<<<< HEAD
 
+=======
+>>>>>>> desarrollo
             <ng-container matColumnDef="acciones" class="acciones">
               <th style="padding-left:2.5%;" mat-header-cell *matHeaderCellDef class="botones"> ACCIONES </th>
               <td mat-cell *matCellDef="let row" class="botones">
-                <button
+                <button (click)="editar(row)"
                   style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;vertical-align: text-top;">
                   <mat-icon  style="color: black;margin-top: 20%;">edit</mat-icon>
                 </button>
-                <button class="consultar"
+                <button (click)="consultar(row)" class="consultar"
                   style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
                   <mat-icon style="color: #3f51b5;margin-top: 20%;">visibility</mat-icon>
                 </button>

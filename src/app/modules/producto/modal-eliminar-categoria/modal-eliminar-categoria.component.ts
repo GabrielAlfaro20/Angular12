@@ -36,6 +36,7 @@ export class ModalEliminarCategoriaComponent implements OnInit {
     })).subscribe(data =>{
       this.serviceCategorias.setMensajeCambio("Categoria eliminado correctamente")
       this.serviceCategorias.settabNumCambio(data)
+      this.cerrar()
 
       
     })

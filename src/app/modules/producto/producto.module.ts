@@ -11,6 +11,9 @@ import { CategoriaEditarComponent } from './categoria-producto/categoria-editar/
 import { ProductoEditarComponent } from './mantenimiento-producto/producto-editar/producto-editar.component';
 import { ModalEliminarProductoComponent } from './mantenimiento-producto/modal-eliminar-producto/modal-eliminar-producto.component';
 
+import { ProductoCrearComponent } from './mantenimiento-producto/producto-crear/producto-crear.component';
+import { ConsultarCategoriaComponent } from './categoria-producto/consultar-categoria/consultar-categoria.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -40,6 +43,9 @@ const routes: Routes = [
     ModalEliminarCategoriaComponent,
     CategoriaEditarComponent,
     ProductoEditarComponent,
-    ModalEliminarProductoComponent,],
+    ModalEliminarProductoComponent,
+    ProductoCrearComponent,
+    ConsultarCategoriaComponent]
+
 })
 export class ProductoModule { }

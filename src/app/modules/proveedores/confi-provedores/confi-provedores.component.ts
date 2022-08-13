@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 import { elementAt } from 'rxjs/operators';
 import { Proveedor } from '../model/proveedor';
 import { ProveedorService } from '../service/proveedor.service';
+import { ConsultarProveedoresComponent } from './consultar-proveedores/consultar-proveedores.component';
 import { ModalEliminarProveedorComponent } from './modal-eliminar-proveedor/modal-eliminar-proveedor.component';
+import { ProveedorEditarComponent } from './proveedor-editar/proveedor-editar.component';
 
 @Component({
   selector: 'app-confi-provedores',
@@ -17,11 +19,11 @@ import { ModalEliminarProveedorComponent } from './modal-eliminar-proveedor/moda
   styleUrls: ['./confi-provedores.component.css']
 })
 export class ConfiProvedoresComponent implements OnInit {
-  listprove?: Proveedor[];
+  listprove: Proveedor[];
   displayedColumns: string[] = ['idProveedor', 'nombreEmpresa', 'correo', 'telefono', 'direccion', 'acciones'];
-  dataSource!: MatTableDataSource<Proveedor>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  dataSource: MatTableDataSource<Proveedor>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   public formProveedor: FormGroup;
   constructor(private router: Router, private listarProveedor: ProveedorService, private dialog: MatDialog,
@@ -55,8 +57,26 @@ export class ConfiProvedoresComponent implements OnInit {
 
     })
   }
-  consultar() {
+
+  editar(provee:Proveedor){
+    this.dialog.open(ProveedorEditarComponent , {
+      width: '600px',
+      height: '550px',
+      data: provee
+    });
+
   }
+  consultar(prove:Proveedor){
+    this.dialog.open(ConsultarProveedoresComponent,{
+      width: '600px',
+      height: '550px',
+      data: prove
+    });
+    }
+
+  
+
+  
   crearTabla(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.paginator = this.paginator;
@@ -81,7 +101,7 @@ export class ConfiProvedoresComponent implements OnInit {
   eliminarProveedor(proveedor: Proveedor) {
     console.log("hola mundo");
     this.dialog.open(ModalEliminarProveedorComponent, {
-      width: '500px',
+      width: '600px',
       height: '250px',
       data: {
         ...proveedor

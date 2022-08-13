@@ -1,0 +1,35 @@
+.campo-intermedio{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .campo{
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.eyeicon{
+  position: absolute;
+  right: -15px;
+  top:10px;
+  cursor: pointer;
+}
+
+.campo-intermedio{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .campo-secundario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .campo-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }

@@ -1,0 +1,106 @@
+<div class="card">
+    <div class="card-header">
+        Editar Empleado
+        <button type="button" class=" btn btn-danger" style="float:right; align-items: flex-end;" (click)="cerrar()"><i
+                class="fas fa-long-arrow-alt-left"></i>
+        </button>
+    </div>
+    <form [formGroup]="editarForm">
+        <div class="card-body" style="margin: auto; width: 100%">
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <mat-form-field  style="width: 120px;" appearance="standard" class="search">
+                        <mat-label>Código</mat-label >
+                        <input formControlName="idEmpleado" placeholder="Codigo Empleado" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>DNI</mat-label >
+                        <input type="text" formControlName="dniEml" placeholder="DNI"
+                        matInput>
+                    </mat-form-field>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <div class="campo-checkbox">
+                        <mat-checkbox formControlName="estadoEmpl">Estado del empleado</mat-checkbox>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Nombre del Empleado</mat-label >
+                        <input type="text" formControlName="nombresEml" placeholder="Nombre del Empleado"
+                        matInput>
+                    </mat-form-field>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Apellidos del Empleado</mat-label >
+                        <input type="text" formControlName="apellidosEmpl" placeholder="Apellidos del Empleado"
+                        matInput>
+                    </mat-form-field>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Correo</mat-label >
+                        <input type="text" formControlName="correoEmpl" placeholder="Correo" (keyup)="escribirData('correoEmpl')"
+                        matInput>
+                    </mat-form-field>
+                    <p class="alert alert-danger"  *ngIf="requerido4 && f.correoEmpl " style="color: red;margin-left: 6.5%;margin-left: 0.98%; width:250px;"> Correo requerido</p>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Password</mat-label >
+                            <input [type]="changetype?'password':'text'" matInput formControlName="passwordEmpl" (keyup)="escribirData('passwordEmpl')">
+                            <span class="eyeicon" (click)="verPassword()">
+                              <i [ngClass]="visible?'fa fa-eye': 'fa fa-eye-slash'"></i>
+                            </span>
+                    </mat-form-field>
+                    <p class="alert alert-danger"  *ngIf="requerido5 && f.passwordEmpl " style="color: red;margin-left: 6.5%;margin-left: 0.98%; width:250px;"> Password requerido</p>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Cargo</mat-label >
+                        <input type="text" formControlName="rolEmpl" placeholder="Cargo" (keyup)="escribirData('rolEmpl')"
+                        matInput>
+                    </mat-form-field>
+                <p class="alert alert-danger"  *ngIf="requerido6 && f.rolEmpl " style="color: red;margin-left: 6.5%;margin-left: 0.98%; width:250px;"> Cargo requerido</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    <div class="dos">
+        <button (click)="guardarEditar()" style="margin-left: 2%; margin-bottom: 2%;" type="button" class=" btn btn-success"><i class="fas fa-save" type="button"></i></button>
+        <button style="margin-left: 2%; margin-bottom: 2%;" type="button" class=" btn btn-danger" (click)="cerrar()"><i
+                class="fas fa-long-arrow-alt-left"></i></button>
+
+    </div>
+</form>
+</div>

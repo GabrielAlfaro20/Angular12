@@ -43,4 +43,7 @@ export class CategoriaService {
   registrarCategoria(parametro: Categoria):Observable<Categoria[]>{
     return this.http.post<Categoria[]>(baseUrl+"agregar/",parametro);
   }
+  editarCategoria(parametro:Categoria):Observable<Categoria[]>{
+    return this.http.put<Categoria[]>(baseUrl+"actualizarCategoria/",parametro);
+  }
 }

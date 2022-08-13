@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { LoginServiceService } from '../service/login-service.service';
 import { Login } from '../model/login.modal';
 import { AuthInterceptorService } from '../interceptores/auth-interceptor.service';
-import { CookieService } from 'ngx-cookie-service';
 import { UsuariosList } from '../model/loginList';
 @Component({
   selector: 'app-login',
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private Builder: FormBuilder,
     private login: LoginServiceService,
-    private cookieService: CookieService,
     private authInterceptorService: AuthInterceptorService
   ) { }
 
@@ -73,7 +71,6 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.login.crearToken(login).subscribe(
         (resp: any) => {
-          /*      console.log(resp) */
           this.login.setToken(resp.token)
           //  this.cookieService.set('token',data.token.);
           //  this.authInterceptorService.

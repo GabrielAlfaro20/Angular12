@@ -28,6 +28,7 @@ export class ModalEliminarProveedorComponent implements OnInit {
     })).subscribe(data =>{
       this.serviceProveedor.setMensajeCambio("Proveedor eliminado correctamente")
       this.serviceProveedor.settabNumCambio(data)
+      this.cerrar();
     })
   }
 
