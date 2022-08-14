@@ -24,8 +24,33 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <button mat-fab style="margin-left: 5%;    padding-top: 7px;
+        margin-top: 19px; background-color: dodgerblue;" id="boton-agregar" (click)="agregarCaracteristica()">
+            <mat-icon>add</mat-icon>
+          </button>
+
       </div>
-      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+      <ng-container formArrayName="caracteristicas" *ngFor="let c of caracteristicas.controls; let i = index">
+
+        <div [formGroupName]="i" class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+          <mat-form-field style="width: 45%;" appearance="standard" class="search">
+            <mat-label>Precio Del Producto</mat-label>
+            <input formControlName="precioCaract" matInput>
+          </mat-form-field>
+
+          <mat-form-field style="margin-left:30px;width: 50%;" appearance="standard" class="search">
+            <mat-label>Cantidad Del Producto</mat-label>
+            <input formControlName="cantidCaract" matInput>
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%;" appearance="standard" class="search">
+            <mat-label>Descripcion Del Producto</mat-label>
+            <input formControlName="descriCaract" matInput>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <!-- <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
 
         <mat-form-field style="width: 45%;" appearance="standard" class="search">
           <mat-label>Precio Del Producto</mat-label>
@@ -36,13 +61,13 @@
           <mat-label>Cantidad Del Producto</mat-label>
           <input formControlName="cantidadProducto" matInput>
         </mat-form-field>
-      </div>
-      <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+      </div> -->
+      <!-- <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
         <mat-form-field style="width: 100%;" appearance="standard" class="search">
           <mat-label>Descripcion Del Producto</mat-label>
           <input formControlName="descripcionProducto" matInput>
         </mat-form-field>
-      </div>
+      </div> -->
       <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
         <!-- <input accept="image/png,image/jpg,image/jpeg,image/svg" type="file" formControlName="imagen" class="d-none"
           (change)="onPhotoSelected($event)" #photoInput>
@@ -50,11 +75,11 @@
           [src]="photoSelected || 'assets/productos/no-imagen.png'" class="img-fluid" alt="No image">
        -->
        <ngx-dropzone type="image" (change)="onSelect($event)" accept="image/png,image/jpg,image/jpeg,image/svg" [multiple]="false">
-        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"[removable]="true" (removed)="onRemove(f)">
-          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-        </ngx-dropzone-image-preview>
-      </ngx-dropzone>
+          <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"[removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+          </ngx-dropzone-image-preview>
+        </ngx-dropzone>
       </div>
     </div>
   </div>

@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+//import { threadId } from 'worker_threads';
 import { Categoria } from '../../model/categoria';
 import { Caracteristica, Producto } from '../../model/producto';
 import { CaracteristicaService } from '../../services/caracteristica.service';
@@ -26,7 +27,7 @@ export class ProductoCrearComponent implements OnInit {
     private dialogRef: MatDialogRef<ProductoCrearComponent>,
     private snackBar: MatSnackBar,
     private listarCategoria: CategoriaService,
-    private producto: ProductosService,
+    private productosService: ProductosService,
     private caracteristica: CaracteristicaService,
 
 
@@ -37,7 +38,7 @@ export class ProductoCrearComponent implements OnInit {
     this.formulario();
     this.cargarCategori();
 
-    this.producto.getMensajeCambio().subscribe(data => {
+    this.productosService.getMensajeCambio().subscribe(data => {
       this.snackBar.open(data, 'AVISO', { duration: 2000 });
     });
 
@@ -46,9 +47,11 @@ export class ProductoCrearComponent implements OnInit {
     this.form = this.formBuilder.group({
       nombreProducto: ['', Validators.required],
       txtcategoria: [1, Validators.required],
-      precioProducto: ['', Validators.required],
-      cantidadProducto: ['', Validators.required],
-      descripcionProducto: ['', Validators.required],
+
+      caracteristicas: this.formBuilder.array([])
+      // precioProducto: ['', Validators.required],
+      // cantidadProducto: ['', Validators.required],
+      // descripcionProducto: ['', Validators.required],
 
     })
   }
@@ -83,6 +86,28 @@ export class ProductoCrearComponent implements OnInit {
 
     });
   }
+  crearFormCaracteristica(){
+    return this.formBuilder.group({
+      descriCaract:['', Validators.required],
+      cantidCaract:['', Validators.required],
+      precioCaract:['', Validators.required]
+    })
+  }
+
+  get caracteristicas(){
+    return this.form.get("caracteristicas") as FormArray
+  }
+
+  agregarCaracteristica(){
+    console.log("Ingreso");
+
+    //document.getElementById("id_caracteristica").style.display = 'block'
+
+    this.caracteristicas.push(this.crearFormCaracteristica())
+    console.log(this.caracteristicas);
+
+  }
+
   productoA: Producto;
   caracteristicaA: Caracteristica;
   /**** */
@@ -98,31 +123,51 @@ export class ProductoCrearComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
+  productos:Producto
   guardar() {
     if (!this.files[0]) {
-      this.producto.setMensajeCambio("debes ingresar una imagen")
+      this.productosService.setMensajeCambio("debes ingresar una imagen")
     } else {
 
       if (this.form.get('nombreProducto').value.trim() == "" ) {
         console.log("nombreProducto es vacio");
       }
-      if (this.form.get('precioProducto').value.trim() == '' || this.form.value.precioProducto == undefined) {
-        console.log("precioProducto es vacio");
-      }
-      if (this.form.get('cantidadProducto').value.trim() == '' || this.form.value.cantidadProducto == undefined) {
-        console.log("cantidadProducto es vacio")
-      }
-      if (this.form.get('descripcionProducto').value.trim() == ''|| this.form.value.descripcionProducto == undefined) {
-        console.log("descripcionProducto es vacio");
-      }
+      // if (this.form.get('precioProducto').value.trim() == '' || this.form.value.precioProducto == undefined) {
+      //   console.log("precioProducto es vacio");
+      // }
+      // if (this.form.get('cantidadProducto').value.trim() == '' || this.form.value.cantidadProducto == undefined) {
+      //   console.log("cantidadProducto es vacio")
+      // }
+      // if (this.form.get('descripcionProducto').value.trim() == ''|| this.form.value.descripcionProducto == undefined) {
+      //   console.log("descripcionProducto es vacio");
+      // }
       else {
         console.log("puedes registrar");
+        console.log(this.form.get('caracteristicas').value);
+
         //imagen
         const file_data = this.files[0];
         const data =new FormData();
         data.append('file',file_data);
         data.append('upload_preset','DataPrint');
         data.append('cloud_name', 'dq6j3pllk')
+
+
+        this.productos={
+          idProductoPro:null,
+          imageProp:"",
+          nombrePro: this.form.get("nombreProducto").value,
+          estadoPro: true,
+          categoria: {"idcategorias":this.form.get("txtcategoria").value},
+          caracteristicas:this.form.get("caracteristicas").value
+        }
+        this.productosService.guardarProducto(this.productos).subscribe(data =>{
+          console.log(data);
+
+        })
+        console.log(this.productos);
+
+
 
       }
     }
