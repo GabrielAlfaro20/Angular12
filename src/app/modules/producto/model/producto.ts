@@ -1,7 +1,9 @@
+import { FileHandle } from "./file-handle-model"
+
 //
 export interface Producto {
   idProductoPro?: number
-  imageProp: string
+  productImages:FileHandle[]
   nombrePro: string//
   estadoPro: boolean//
   categoria?: Categoria//

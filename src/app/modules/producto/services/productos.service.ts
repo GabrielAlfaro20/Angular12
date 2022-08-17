@@ -40,8 +40,8 @@ export class ProductosService {
    eliminarProducto(parametro:string){
     return this.http.delete(baseUrl+"eliminarProducto/"+parametro);
   }
-  guardarProducto(parametro:Producto):Observable<Producto[]>{
-    return this.http.post<Producto[]>(baseUrl+"agregarProducto/",parametro);
+  guardarProducto(parametro:Producto){
+    return this.http.post<Producto>(baseUrl+"agregarProducto/",parametro);
   }
 
 
