@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="card-header">
+            INFORMACIÓN DE PROVEEDOR
+        <button type="button" class=" btn btn-danger" style="float:right; align-items: flex-end;" (click)="cerrar()"><i
+                class="fas fa-long-arrow-alt-left"></i>
+        </button>
+    </div>
+    <form [formGroup]="consultarForm">
+        <div class="card-body" style="margin: auto; width: 100%">
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <mat-form-field  style="width: 120px;" appearance="standard" class="search">
+                        <mat-label>Código</mat-label >
+                        <input formControlName="idProveedor" placeholder="Codigo Proveedor" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <div>
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Nombre de empresa</mat-label >
+                        <input type="text" formControlName="nombreEmpresa" placeholder="Nombre de empresa"
+                        matInput>
+                    </mat-form-field>
+                </div>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Correo</mat-label >
+                        <input type="email" formControlName="correo" placeholder="Correo" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Teléfono</mat-label >
+                        <input formControlName="telefono" placeholder="Teléfono" matInput maxlength="9" >
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="horizontal1" style="width: auto; display: flex; flex-direction: row;">
+                <div class="col-lg-10_select_caja1" style="margin-left: 25px;">
+                    <mat-form-field style="width: 250px;" appearance="standard" class="search">
+                        <mat-label>Dirección</mat-label >
+                        <input formControlName="direccion" placeholder="Dirección" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

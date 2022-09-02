@@ -17,6 +17,12 @@
   float: right;
   background-color: white !important;
 }
+.eyeicon{
+  position: absolute;
+  right: -15px;
+  top:10px;
+  cursor: pointer;
+}
 .titulo{
   font-size: 24px;
   margin:0;
@@ -219,3 +225,26 @@
       font-size: 14px;
       color: black;
     }
+
+    .campo{
+      width: 100%;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+
+  .campo-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+  .campo-intermedio{
+    display: flex;
+    flex-direction: row;
+  }
+  .caja-principal{
+  width: 90%;
+  margin: 2rem auto;
+}

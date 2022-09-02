@@ -1,26 +1,101 @@
-<div class="caja-principal">
-    <h1><strong>MANTENIMIENTO DE PRODUCTOS</strong></h1>
-    <div class="caja-contenido">
-        <div class="nav-busqueda">
-            <mat-form-field appearance="standard">
-              <div class="barra-busqueda">
-                <mat-icon>search</mat-icon>
-                <input matInput (keyup)="($event)" placeholder="Buscar" #input>
-              </div>
-            </mat-form-field>
-          </div>
-          <div class="caja-registro">
-              <div class="campo-botones">
-                <div class="dos" >
-                  <button   class=" btn btn-success" id="boton-add">
-                   Registrar Producto
-                  </button>
-                  <button mat-fab button="submit"  style="float: right ; margin-top:0px;background-color: darkorchid;"
-                    id="boton-agregar">
-                      <mat-icon>add</mat-icon>
-                  </button>
-                </div>
-              </div>
-          </div>
-    </div>
+<div class="principal">
+  <div class="nav-busqueda position-sticky sticky-top">
+    <h3 class="titulo" style="justify-content: center;padding-top: 2%;width: 30%;"> MANTENIMIENTO DE PRODUCTOS</h3>
+    <mat-form-field appearance="standard" style="float: left; width: 30%; top: -10px; margin-left:7% ;">
+      <div class="barra-busqueda">
+        <mat-icon style="margin-top: 1.2%;margin-left: -12%;">search</mat-icon>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input maxlength="80" id="mySelect">
+      </div>
+    </mat-form-field>
+      <button mat-fab style="margin-left: 5%;    padding-top: 7px;
+        margin-top: 19px; background-color: dodgerblue;" id="boton-agregar" (click)="crear()">
+            <mat-icon>add</mat-icon>
+          </button>
   </div>
+  <div class="mat-elevation-z8" style="margin-left: 50px;width: 92%;">
+    <table mat-table [dataSource]="dataSource" class="table-responsive" matSort>
+      <ng-container matColumnDef="idProductoPro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="idProductoPro" class="idProductoPro">CÓDIGO</th>
+        <td mat-cell *matCellDef="let row" class="idProductoPro">
+          {{row.idProductoPro}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="nombrePro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="nombrePro" class="nombrePro">NOMBRE DEL PRODUCTO</th>
+        <td mat-cell *matCellDef="let row" class="nombrePro">
+          {{row.nombrePro}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="nombreCate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="nombreCate" class="nombreCate">CATEGORÍA</th>
+        <td mat-cell *matCellDef="let row" class="nombreCate">
+          {{row.nombreCate}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="imageProp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="imageProp" class="imageProp">IMAGEN</th>
+        <td mat-cell *matCellDef="let row" class="imageProp">
+          <img src="asset/Borrador.jpg">
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="estadoPro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="estadoPro" class="estadoPro"> ESTADO</th>
+        <td mat-cell *matCellDef="let row" class="estadoPro">
+          <mat-checkbox [disabled]="true" [checked]="row.estadoPro == '1' ? true : false"></mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones" class="acciones">
+        <th style="padding-left:2.5%;" mat-header-cell *matHeaderCellDef class="botones"> ACCIONES </th>
+        <td mat-cell *matCellDef="let row" class="botones">
+          <button
+            style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;vertical-align: text-top;">
+            <mat-icon style="color: black;margin-top: 20%;">edit</mat-icon>
+          </button>
+          <button class="consultar"
+            style="height: 25px; position: static;background: transparent;border: none;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
+            <mat-icon style="color: #3f51b5;margin-top: 20%;">visibility</mat-icon>
+          </button>
+          <button
+            style="height: 25px;position: static;color: red;border: none;background: transparent;padding-top: 2.2%;padding-left: 10%;vertical-align: text-top;">
+            <mat-icon style="margin-top: 20%">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-table"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se encontraron resultados para "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5,10,15]" aria-label="Select page of users"></mat-paginator>
+  </div>
+  <!--<div class="caja-registro" style="height: 350px;">
+    <form [formGroup]="form">
+      <div class="row" style="align-items: center;">
+        <mat-form-field style="width: 40%;margin-left: 6.5%; float: left; top:-120px;">
+          <mat-label>Nombre Del Producto</mat-label>
+          <input type="text" matInput>
+        </mat-form-field>
+        <label for="" style="float: left; border:solid;width:38%; height: 300px;margin-left:7.4%" accept="image/png, image/jpeg, image/gif">
+          NO aY UNA IMAGEN</label>
+        <mat-form-field style="width: 40%;margin-left: 6.5%;top:-236px;">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="txtcategoria">
+            <mat-option *ngFor="let op of categoria" [value]="op.nombreCate">
+              {{op.nombreCate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div style="width: 40%; margin-left: -481px;margin-top: -262px; float: left;">
+          <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+          <button class=" btn btn-success" id="boton-add">
+            Agregar Producto
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>-->
+</div>
+<!--<button type="button" class=" btn btn-danger" id="boton-regresar" routerLink="/home"><i
+    class="fas fa-long-arrow-alt-left"></i></button>-->

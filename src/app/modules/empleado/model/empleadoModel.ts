@@ -1,15 +1,14 @@
 export class Empleado{
-    pkID? : PkID_Emple;
+    idEmpleado?: number;
     nombresEml?: string;
     apellidosEmpl?: string;
     dniEml?:string;
     correoEmpl?:string;
     passwordEmpl?:string;
     rolEmpl?: string;
-    estadoEmpl?: boolean;
+    estadoEmpl?: string;
 
 }
 
 interface PkID_Emple{
-    idEmpleado: string;
 }

@@ -13,7 +13,7 @@ import { ClienteService } from '../service/cliente.service';
 })
 export class ConfiClienteComponent implements OnInit {
   listCli?: Cliente[];
-  displayedColumns: string[]=['idcliente','nombre','apellido','dni','telefono','direcc','acciones']
+  displayedColumns: string[]=['idcliente','nombre','apellido','dni','telefono','direcc']
   dataSource!: MatTableDataSource<Cliente>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
